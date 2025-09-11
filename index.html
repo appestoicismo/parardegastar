@@ -519,7 +519,7 @@
                 <strong>Resultado em 20 minutos por dia, sem complicações.</strong>
             </p>
             
-            <a href="#oferta" class="cta-button">Ver Oferta Especial</a>
+            <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" class="cta-button" target="_blank">Ver Oferta Especial</a>
         </div>
     </section>
 
@@ -623,7 +623,7 @@
         <div class="container">
             <h2 class="urgency-title">🚨 Acesse Ainda Hoje e Comece a Controlar Seus Gastos Impulsivos</h2>
             <p style="font-size: 18px; margin-bottom: 30px;">Liberado imediatamente após a compra. Ainda hoje você terá o controle que sempre quis!</p>
-            <a href="#oferta" class="cta-button-white">Quero Acesso Imediato</a>
+            <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" class="cta-button-white" target="_blank">Quero Acesso Imediato</a>
         </div>
     </section>
 
@@ -714,7 +714,7 @@
                     Se não ficar satisfeito, devolvemos 100% do seu investimento!
                 </div>
                 
-                <a href="https://checkout.kwify.com/audio-hipnotico" class="cta-button" target="_blank" onclick="fbq('track', 'AddToCart');">Quero Controlar Meus Gastos Agora</a>
+                <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" class="cta-button" target="_blank" onclick="fbq('track', 'AddToCart');">Quero Controlar Meus Gastos Agora</a>
                 
                 <p style="color: #dc2626; font-weight: 600; margin-top: 20px; font-size: 16px;">
                     ⏰ Acesso liberado imediatamente após a compra
@@ -731,7 +731,7 @@
             <div class="faq-item">
                 <div class="faq-question">💳 Posso pagar no cartão de crédito?</div>
                 <div class="faq-answer">
-                    Sim! Aceitamos cartão de crédito, débito e PIX. Pagamento 100% seguro processado pela Kwify.
+                    Sim! Aceitamos cartão de crédito, débito e PIX. Pagamento 100% seguro processado pela Hotmart.
                 </div>
             </div>
             
@@ -744,4 +744,87 @@
             
             <div class="faq-item">
                 <div class="faq-question">🔄 E se eu não gostar?</div>
-                <div class
+                <div class="faq-answer">
+                    Você tem 7 dias de garantia incondicional. Se não ficar satisfeito, devolvemos 100% do seu dinheiro.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">📱 O app funciona no meu celular?</div>
+                <div class="faq-answer">
+                    Sim! O AppAutoHipnose funciona em iPhone e Android. Disponível para download gratuito.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">❓ E se eu tiver dúvidas?</div>
+                <div class="faq-answer">
+                    Oferecemos suporte completo por WhatsApp: (19) 974010028. Nossa equipe está pronta para ajudar você.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bloco 10: CTA Final -->
+    <section class="urgency-section">
+        <div class="container">
+            <h2 style="font-size: 28px; margin-bottom: 20px;">🎯 Garanta Já o Seu Acesso</h2>
+            <p style="font-size: 20px; margin-bottom: 15px;">Comece hoje mesmo a ter controle total sobre seus gastos</p>
+            <p style="font-size: 18px; margin-bottom: 30px;">⏰ Apenas R$ 19,90 - Acesso imediato</p>
+            <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" class="cta-button-white" target="_blank" style="font-size: 22px; padding: 20px 45px;">Quero Garantir Meu Acesso Agora</a>
+        </div>
+    </section>
+
+    <!-- Bloco 9: Rodapé -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h4>AppAutoHipnose</h4>
+                    <p>CNPJ: 40.678.175/0001-77</p>
+                    <p>Responsável: Hipnoterapeuta Alex Andreoli Dantas</p>
+                </div>
+                <div>
+                    <h4>Contato</h4>
+                    <p>📧 contato@appestoicismo.com.br</p>
+                    <p>📱 (19) 974010028</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #374151; padding-top: 20px; margin-top: 30px;">
+                <p>&copy; 2025 AppAutoHipnose - Todos os direitos reservados.</p>
+                <p style="font-size: 14px; margin-top: 10px;">Este produto não substitui acompanhamento médico ou psicológico profissional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll suave para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Tracking de eventos do Facebook
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track quando usuário visualiza a oferta
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        fbq('track', 'ViewContent');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            const ofertaSection = document.getElementById('oferta');
+            if (ofertaSection) {
+                observer.observe(ofertaSection);
+            }
+        });
+    </script>
+</body>
+</html>
