@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pare de Comprar por Impulso - Método Revolucionário</title>
-    <meta name="description" content="Método revolucionário para parar de comprar por impulso sem planilhas ou força bruta. Descubra como reprogramar sua mente em apenas 7 dias.">
-    
-    <!-- Preload audio for better performance -->
+    <meta name="description" content="Cansado de comprar por impulso? Descubra um método revolucionário de 7 dias para reprogramar sua mente e tomar o controle das suas finanças. Sem planilhas, sem sofrimento.">
     <link rel="preload" as="audio" href="https://appestoicismo.github.io/parardegastar/paredegastar1.MP3">
     
-    <!-- Facebook Pixel -->
+    <!-- Facebook Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -24,9 +22,10 @@
     </script>
     <noscript>
     <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=1127160492081134&ev=PageView&noscript=1"/>
+         src="https://www.facebook.com/tr?id=1127160492081134&ev=PageView&noscript=1" alt="Facebook Pixel"/>
     </noscript>
-    
+    <!-- End Facebook Pixel Code -->
+
     <style>
         /* CSS Variables */
         :root {
@@ -41,15 +40,19 @@
             --success: #27ae60;
             --success-light: #4CAF50;
             --warning: #FFD700;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.2);
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
         }
-        
-        /* Base Styles */
+
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -57,17 +60,17 @@
             background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
             min-height: 100vh;
         }
-        
+
         /* Utility Classes */
         .is-hidden {
             display: none !important;
         }
-        
+
         .is-active {
             background: var(--brand-1) !important;
             color: white !important;
         }
-        
+
         .sr-only {
             position: absolute;
             width: 1px;
@@ -79,8 +82,8 @@
             white-space: nowrap;
             border: 0;
         }
-        
-        /* Smart Scroll Animations */
+
+        /* Animations */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -92,16 +95,44 @@
                 transform: translateY(-3px);
             }
         }
-        
-        .scroll-hint {
-            animation: bounce 2s infinite;
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
-        
-        /* Smooth section transitions */
-        #homepage, #quiz-container, #result-page, #audio-section, #offer-section, #testimonials, #faq {
-            transition: opacity 0.3s ease, transform 0.3s ease;
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
+        @keyframes pulse-button {
+            0% {
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4), 
+                            0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+            70% {
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4), 
+                            0 0 0 10px rgba(255, 107, 107, 0);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4), 
+                            0 0 0 0 rgba(255, 107, 107, 0);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* Container */
         .container {
             max-width: 800px;
@@ -109,14 +140,14 @@
             padding: 20px;
             background: var(--bg);
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            transition: padding-top 0.3s ease;
+            box-shadow: 0 0 20px var(--shadow-light);
+            transition: var(--transition);
         }
-        
+
         .container.sticky-active {
             padding-top: 70px;
         }
-        
+
         /* Sticky CTA Bar */
         .sticky-cta {
             position: fixed;
@@ -133,24 +164,19 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
             animation: slideDown 0.3s ease-out;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
-        
+
         .sticky-cta.scrolled {
             background: linear-gradient(45deg, var(--cta-1), var(--cta-2));
             transform: scale(1.02);
         }
-        
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-        
+
         .sticky-cta-text {
             font-size: 0.9em;
             font-weight: bold;
         }
-        
+
         .sticky-cta-btn {
             background: var(--bg);
             color: var(--cta-1);
@@ -161,14 +187,17 @@
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
-        
-        .sticky-cta-btn:hover {
+
+        .sticky-cta-btn:hover,
+        .sticky-cta-btn:focus {
             transform: scale(1.05);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 8px var(--shadow-medium);
+            outline: 2px solid var(--warning);
+            outline-offset: 2px;
         }
-        
+
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -184,28 +213,31 @@
             cursor: pointer;
             opacity: 0;
             transform: translateY(100px);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             z-index: 999;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
-        
+
         .back-to-top.show {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .back-to-top:hover {
+
+        .back-to-top:hover,
+        .back-to-top:focus {
             background: var(--brand-2);
             transform: translateY(0) scale(1.1);
+            outline: 2px solid var(--warning);
+            outline-offset: 2px;
         }
-        
+
         /* Header Section */
         .headline {
             text-align: center;
             margin-bottom: 40px;
             padding: 30px 20px;
         }
-        
+
         .main-headline {
             font-size: 2.2em;
             font-weight: bold;
@@ -213,41 +245,20 @@
             margin-bottom: 20px;
             line-height: 1.2;
         }
-        
+
         .sub-headline {
             font-size: 1.3em;
             color: var(--text-secondary);
             margin-bottom: 20px;
             font-weight: 600;
         }
-        
+
         .simple-text {
             font-size: 1.1em;
             color: var(--text-muted);
             margin-bottom: 30px;
         }
-        
-        /* Continue Hints */
-        .continue-hint {
-            text-align: center;
-            margin: 20px 0 10px 0;
-            padding: 12px 20px;
-            background: linear-gradient(45deg, var(--brand-1), var(--brand-2));
-            color: white;
-            border-radius: 25px;
-            font-size: 0.9em;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            display: inline-block;
-            border: none;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-        
-        .continue-hint:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-        
+
         /* Buttons */
         .cta-button {
             background: linear-gradient(45deg, var(--cta-1), var(--cta-2));
@@ -258,62 +269,46 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
             text-decoration: none;
             display: inline-block;
         }
-        
-        .cta-button:hover {
+
+        .cta-button:hover,
+        .cta-button:focus {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
-        }
-        
-        .cta-button:focus {
             outline: 3px solid var(--warning);
             outline-offset: 2px;
         }
 
         /* Special Audio Button */
         .cta-button.audio-special {
-            background: var(--bg) !important;
-            color: var(--cta-1) !important;
-            border: 2px solid var(--cta-1) !important;
-            font-weight: 900 !important;
-            font-size: 1.3em !important;
-            padding: 25px 45px !important;
+            background: var(--bg);
+            color: var(--cta-1);
+            border: 2px solid var(--cta-1);
+            font-weight: 900;
+            font-size: 1.3em;
+            padding: 25px 45px;
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4), 
-                        0 0 0 0 rgba(255, 107, 107, 0.7) !important;
-            animation: pulse-button 2s infinite !important;
-            position: relative !important;
-            overflow: hidden !important;
-            text-transform: uppercase !important;
-            letter-spacing: 2px !important;
+                        0 0 0 0 rgba(255, 107, 107, 0.7);
+            animation: pulse-button 2s infinite;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .cta-button.audio-special:hover {
-            background: var(--cta-1) !important;
-            color: white !important;
-            transform: translateY(-3px) scale(1.05) !important;
+        .cta-button.audio-special:hover,
+        .cta-button.audio-special:focus {
+            background: var(--cta-1);
+            color: white;
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6), 
-                        0 0 0 0 rgba(255, 107, 107, 0.7) !important;
-        }
-
-        @keyframes pulse-button {
-            0% {
-                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4), 
-                            0 0 0 0 rgba(255, 107, 107, 0.7);
-            }
-            70% {
-                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4), 
-                            0 0 0 10px rgba(255, 107, 107, 0);
-            }
-            100% {
-                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4), 
-                            0 0 0 0 rgba(255, 107, 107, 0);
-            }
+                        0 0 0 0 rgba(255, 107, 107, 0.7);
         }
 
         .cta-button.audio-special::before {
@@ -333,57 +328,34 @@
 
         /* Special Purchase Button */
         .cta-button.purchase-special {
-            background: linear-gradient(45deg, var(--cta-1), var(--cta-2), var(--cta-1)) !important;
-            background-size: 200% 200% !important;
-            color: white !important;
-            border: 3px solid white !important;
-            font-weight: 900 !important;
-            font-size: 1.4em !important;
-            padding: 25px 50px !important;
+            background: linear-gradient(45deg, var(--cta-1), var(--cta-2), var(--cta-1));
+            background-size: 200% 200%;
+            color: white;
+            border: 3px solid white;
+            font-weight: 900;
+            font-size: 1.4em;
+            padding: 25px 50px;
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5), 
                         0 0 0 0 rgba(255, 255, 255, 0.8),
-                        inset 0 0 20px rgba(255, 255, 255, 0.2) !important;
-            animation: purchase-pulse 1.5s infinite, gradient-shift 3s ease-in-out infinite !important;
-            position: relative !important;
-            overflow: hidden !important;
-            text-transform: uppercase !important;
-            letter-spacing: 2px !important;
-            transform: scale(1.05) !important;
-            width: 100% !important;
-            max-width: 100% !important;
+                        inset 0 0 20px rgba(255, 255, 255, 0.2);
+            animation: gradient-shift 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: scale(1.05);
+            width: 100%;
+            max-width: 100%;
         }
 
-        .cta-button.purchase-special:hover {
-            background: linear-gradient(45deg, #e55a5a, #dc4924, #e55a5a) !important;
-            color: #fff !important;
-            transform: translateY(-4px) scale(1.05) !important;
+        .cta-button.purchase-special:hover,
+        .cta-button.purchase-special:focus {
+            background: linear-gradient(45deg, #e55a5a, #dc4924, #e55a5a);
+            color: #fff;
+            transform: translateY(-4px) scale(1.05);
             box-shadow: 0 15px 40px rgba(255, 107, 107, 0.7), 
                         0 0 0 5px rgba(255, 255, 255, 0.3),
-                        inset 0 0 30px rgba(255, 255, 255, 0.3) !important;
-        }
-
-        @keyframes purchase-pulse {
-            0% {
-                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5), 
-                            0 0 0 0 rgba(255, 255, 255, 0.8),
-                            inset 0 0 20px rgba(255, 255, 255, 0.2);
-            }
-            50% {
-                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5), 
-                            0 0 0 15px rgba(255, 255, 255, 0.2),
-                            inset 0 0 20px rgba(255, 255, 255, 0.3);
-            }
-            100% {
-                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5), 
-                            0 0 0 0 rgba(255, 255, 255, 0),
-                            inset 0 0 20px rgba(255, 255, 255, 0.2);
-            }
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+                        inset 0 0 30px rgba(255, 255, 255, 0.3);
         }
 
         .cta-button.purchase-special::before {
@@ -401,64 +373,43 @@
             left: 100%;
         }
 
-        .cta-button.purchase-special::after {
-            content: '✨';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 1.2em;
-            animation: sparkle 2s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-                transform: scale(0.5) rotate(0deg);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2) rotate(180deg);
-            }
-        }
-        
         /* Quiz Section */
         .quiz-container {
-            display: none;
             background: #f8f9fa;
             padding: 40px;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             margin: 30px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px var(--shadow-light);
         }
-        
+
         .question {
             margin-bottom: 30px;
+            border: none;
         }
-        
-        .question h3 {
+
+        .question legend h3 {
             font-size: 1.4em;
             color: var(--text);
             margin-bottom: 20px;
             font-weight: 600;
         }
-        
+
         .options {
             display: grid;
             gap: 15px;
         }
-        
+
         .option {
             background: var(--bg);
             padding: 15px 20px;
             border: 2px solid #e9ecef;
             border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-size: 1em;
             text-align: left;
         }
-        
+
         .option:hover,
         .option:focus {
             border-color: var(--brand-1);
@@ -466,13 +417,13 @@
             outline: 2px solid var(--warning);
             outline-offset: 2px;
         }
-        
+
         .option.selected {
             border-color: var(--brand-1);
             background: var(--brand-1);
             color: white;
         }
-        
+
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -481,32 +432,30 @@
             margin-bottom: 30px;
             overflow: hidden;
         }
-        
+
         .progress-fill {
             height: 100%;
             background: linear-gradient(45deg, var(--brand-1), var(--brand-2));
             width: 0%;
             transition: width 0.5s ease;
         }
-        
+
         /* Result Page */
         .result-page {
-            display: none;
             text-align: center;
             padding: 40px 20px;
         }
-        
+
         /* Audio Section */
         .audio-section {
-            display: none;
             background: var(--text);
             color: white;
             padding: 25px 20px;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             margin: 20px 0;
             text-align: center;
         }
-        
+
         .custom-audio-player {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -531,17 +480,15 @@
             height: 50px;
             font-size: 1.3em;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
             color: white;
         }
 
-        .audio-btn:hover {
+        .audio-btn:hover,
+        .audio-btn:focus {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .audio-btn:focus {
             outline: 2px solid var(--warning);
             outline-offset: 2px;
         }
@@ -653,37 +600,25 @@
             margin-top: 10px;
             font-style: italic;
         }
-        
+
         /* Offer Section */
         .offer-section {
-            display: none;
             background: linear-gradient(135deg, var(--cta-1), var(--cta-2));
             color: white;
             padding: 30px 20px;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             margin: 30px 0;
             text-align: center;
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
             animation: slideInUp 0.8s ease-out;
         }
 
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         .price {
             font-size: 2.5em;
             font-weight: bold;
             margin: 15px 0;
         }
-        
+
         .guarantee {
             background: var(--success);
             color: white;
@@ -694,50 +629,7 @@
             font-size: 0.95em;
         }
 
-        /* How to Use Section */
-        .how-to-use {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .how-to-use h4 {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-        }
-
-        .how-to-use ol {
-            list-style: none;
-            counter-reset: step;
-        }
-
-        .how-to-use li {
-            counter-increment: step;
-            margin-bottom: 10px;
-            padding-left: 30px;
-            position: relative;
-        }
-
-        .how-to-use li::before {
-            content: counter(step);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: rgba(255, 255, 255, 0.2);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-
-        /* Dynamic Bullets */
+        /* Dynamic Benefits */
         .dynamic-benefits {
             background: rgba(255, 255, 255, 0.1);
             padding: 15px;
@@ -762,13 +654,12 @@
             position: absolute;
             left: 0;
         }
-        
+
         /* Testimonials */
         .testimonials {
-            display: none;
             background: #f8f9fa;
             padding: 30px 20px;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             margin: 30px 0;
         }
 
@@ -788,7 +679,7 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--shadow-light);
             border-left: 4px solid var(--brand-1);
         }
 
@@ -810,10 +701,9 @@
 
         /* FAQ */
         .faq {
-            display: none;
             background: #f8f9fa;
             padding: 30px 20px;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             margin: 30px 0;
         }
 
@@ -828,7 +718,7 @@
             margin-bottom: 15px;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px var(--shadow-light);
         }
 
         .faq-question {
@@ -840,14 +730,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.3s ease;
+            transition: var(--transition);
             border: none;
             width: 100%;
             text-align: left;
         }
 
-        .faq-question:hover {
+        .faq-question:hover,
+        .faq-question:focus {
             background: var(--brand-2);
+            outline: 2px solid var(--warning);
+            outline-offset: 2px;
         }
 
         .faq-question::after {
@@ -950,15 +843,15 @@
             }
             
             .cta-button.audio-special {
-                font-size: 1.1em !important;
-                padding: 20px 35px !important;
-                letter-spacing: 1px !important;
+                font-size: 1.1em;
+                padding: 20px 35px;
+                letter-spacing: 1px;
             }
             
             .cta-button.purchase-special {
-                font-size: 1.2em !important;
-                padding: 20px 30px !important;
-                letter-spacing: 1px !important;
+                font-size: 1.2em;
+                padding: 20px 30px;
+                letter-spacing: 1px;
             }
 
             .testimonial-grid {
@@ -973,11 +866,6 @@
             .sticky-cta-btn {
                 padding: 6px 12px;
                 font-size: 0.75em;
-            }
-
-            .continue-hint {
-                font-size: 0.85em;
-                padding: 10px 15px;
             }
         }
 
@@ -1006,25 +894,48 @@
                 right: 15px;
             }
         }
+
+        /* Focus styles for better accessibility */
+        *:focus {
+            outline: 2px solid var(--warning);
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --text: #000000;
+                --bg: #ffffff;
+                --brand-1: #0000ff;
+                --brand-2: #800080;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Sticky CTA Bar -->
-    <div id="sticky-cta" class="sticky-cta">
+    <header class="sticky-cta" id="sticky-cta">
         <span class="sticky-cta-text">🎧 R$ 19,90 - Reprograme sua mente!</span>
         <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" 
            target="_blank" 
-           rel="noopener noreferrer" 
+           rel="noopener noreferrer sponsored" 
            class="sticky-cta-btn checkout-link">
             ACESSAR AGORA
         </a>
-    </div>
+    </header>
 
-    <div class="container" id="main-container">
-        <!-- Homepage -->
-        <div id="homepage">
+    <main class="container" id="main-container">
+        <section id="homepage" aria-labelledby="main-headline">
             <div class="headline">
-                <h1 class="main-headline">
+                <h1 id="main-headline" class="main-headline">
                     VOCÊ NÃO PRECISA ENFIAR SEU CARTÃO DE CRÉDITO NO CONGELADOR 
                 </h1>
                 
@@ -1040,162 +951,87 @@
                     Mas para te revelar isso, eu preciso te fazer três perguntinhas simples, você topa?
                 </p>
                 
-                <button class="cta-button" onclick="startQuiz()" aria-label="Iniciar quiz de 3 perguntas">
+                <button class="cta-button" id="start-quiz-btn" aria-label="Iniciar quiz de 3 perguntas">
                     Topo as 3 perguntas 🚀
                 </button>
             </div>
-        </div>
+        </section>
 
-        <!-- Quiz Container -->
-        <div id="quiz-container" class="quiz-container">
+        <section id="quiz-container" class="quiz-container is-hidden" aria-live="polite">
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
             
-            <!-- Question 1 -->
-            <div id="question1" class="question">
-                <h3>Quando você percebe que fez mais uma compra por IMPULSO, qual desses sentimentos é o que mais aparece?</h3>
-                <div class="options">
-                    <button class="option" onclick="selectOption(1, 'a', this)" aria-label="Opção: Culpa imediata">
-                        😔 Culpa imediata
-                    </button>
-                    <button class="option" onclick="selectOption(1, 'b', this)" aria-label="Opção: Arrependimento financeiro">
-                        💸 Arrependimento financeiro
-                    </button>
-                    <button class="option" onclick="selectOption(1, 'c', this)" aria-label="Opção: Ansiedade com as contas">
-                        😰 Ansiedade com as contas
-                    </button>
-                    <button class="option" onclick="selectOption(1, 'd', this)" aria-label="Opção: Sensação de vazio e desânimo">
-                        😞 Sensação de vazio e desânimo
-                    </button>
-                    <button class="option" onclick="selectOption(1, 'e', this)" aria-label="Opção: Raiva de si mesmo">
-                        😡 Raiva de si mesmo
-                    </button>
-                </div>
-            </div>
+            <form id="quiz-form">
+                <fieldset id="question1" class="question">
+                    <legend><h3>Quando você percebe que fez mais uma compra por IMPULSO, qual desses sentimentos é o que mais aparece?</h3></legend>
+                    <div class="options">
+                        <button type="button" class="option" data-question="1" data-value="a">😔 Culpa imediata</button>
+                        <button type="button" class="option" data-question="1" data-value="b">💸 Arrependimento financeiro</button>
+                        <button type="button" class="option" data-question="1" data-value="c">😰 Ansiedade com as contas</button>
+                        <button type="button" class="option" data-question="1" data-value="d">😞 Sensação de vazio e desânimo</button>
+                        <button type="button" class="option" data-question="1" data-value="e">😡 Raiva de si mesmo</button>
+                    </div>
+                </fieldset>
 
-            <!-- Question 2 -->
-            <div id="question2" class="question is-hidden">
-                <h3>No momento em que você está prestes a confirmar uma compra, qual dessas sensações físicas descreve melhor o que você sente?</h3>
-                <div class="options">
-                    <button class="option" onclick="selectOption(2, 'a', this)" aria-label="Opção: Coração acelerado">
-                        💓 Coração acelerado
-                    </button>
-                    <button class="option" onclick="selectOption(2, 'b', this)" aria-label="Opção: Respiração mais rápida">
-                        🫁 Respiração mais rápida
-                    </button>
-                    <button class="option" onclick="selectOption(2, 'c', this)" aria-label="Opção: Sensação de euforia">
-                        ✨ Sensação de euforia
-                    </button>
-                    <button class="option" onclick="selectOption(2, 'd', this)" aria-label="Opção: Pressa em comprar logo">
-                        ⚡ Pressa em comprar logo
-                    </button>
-                    <button class="option" onclick="selectOption(2, 'e', this)" aria-label="Opção: Calor no corpo (adrenalina)">
-                        🔥 Calor no corpo (adrenalina)
-                    </button>
-                </div>
-            </div>
+                <fieldset id="question2" class="question is-hidden">
+                    <legend><h3>No momento em que você está prestes a confirmar uma compra, qual dessas sensações físicas descreve melhor o que você sente?</h3></legend>
+                    <div class="options">
+                        <button type="button" class="option" data-question="2" data-value="a">💓 Coração acelerado</button>
+                        <button type="button" class="option" data-question="2" data-value="b">🫁 Respiração mais rápida</button>
+                        <button type="button" class="option" data-question="2" data-value="c">✨ Sensação de euforia</button>
+                        <button type="button" class="option" data-question="2" data-value="d">⚡ Pressa em comprar logo</button>
+                        <button type="button" class="option" data-question="2" data-value="e">🔥 Calor no corpo (adrenalina)</button>
+                    </div>
+                </fieldset>
 
-            <!-- Question 3 -->
-            <div id="question3" class="question is-hidden">
-                <h3>Se você conseguir se livrar do hábito de comprar coisas por impulso, qual desses benefícios seria o mais valioso para você?</h3>
-                <div class="options">
-                    <button class="option" onclick="selectOption(3, 'a', this)" aria-label="Opção: Ter controle financeiro de verdade">
-                        💼 Ter controle financeiro de verdade
-                    </button>
-                    <button class="option" onclick="selectOption(3, 'b', this)" aria-label="Opção: Sentir paz mental sem culpa ou arrependimento">
-                        😌 Sentir paz mental sem culpa ou arrependimento
-                    </button>
-                    <button class="option" onclick="selectOption(3, 'c', this)" aria-label="Opção: Orgulho pessoal por ter disciplina">
-                        💪 Orgulho pessoal por ter disciplina
-                    </button>
-                    <button class="option" onclick="selectOption(3, 'd', this)" aria-label="Opção: Segurança financeira com reserva guardada">
-                        🛡️ Segurança financeira com reserva guardada
-                    </button>
-                    <button class="option" onclick="selectOption(3, 'e', this)" aria-label="Opção: Felicidade duradoura ao investir no que importa">
-                        😊 Felicidade duradoura ao investir no que importa
-                    </button>
-                </div>
-            </div>
-        </div>
+                <fieldset id="question3" class="question is-hidden">
+                    <legend><h3>Se você conseguir se livrar do hábito de comprar coisas por impulso, qual desses benefícios seria o mais valioso para você?</h3></legend>
+                    <div class="options">
+                        <button type="button" class="option" data-question="3" data-value="a">💼 Ter controle financeiro de verdade</button>
+                        <button type="button" class="option" data-question="3" data-value="b">😌 Sentir paz mental sem culpa ou arrependimento</button>
+                        <button type="button" class="option" data-question="3" data-value="c">💪 Orgulho pessoal por ter disciplina</button>
+                        <button type="button" class="option" data-question="3" data-value="d">🛡️ Segurança financeira com reserva guardada</button>
+                        <button type="button" class="option" data-question="3" data-value="e">😊 Felicidade duradoura ao investir no que importa</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
 
-        <!-- Result Page -->
-        <div id="result-page" class="result-page">
+        <section id="result-page" class="result-page is-hidden" aria-live="polite">
             <h2 style="color: var(--text); margin-bottom: 30px;">Sua Resposta Revela Muito Sobre Você...</h2>
             
             <div id="personalized-message" style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 20px 0; text-align: left;">
-                <!-- Personalized message will be inserted here -->
             </div>
             
             <p style="font-size: 1.2em; margin: 30px 0; color: var(--text-secondary);">
                 O que parece simples 'falta de controle' na hora da compra, tem na verdade uma explicação psicológica muito curiosa. Vamos ouvir o que a psiquiatra Ana Beatriz diz à respeito:
             </p>
             
-            <button class="cta-button audio-special" onclick="showAudio()" style="margin: 30px 0;" aria-label="Ouvir áudio da psiquiatra">
+            <button class="cta-button audio-special" id="show-audio-btn" style="margin: 30px 0;" aria-label="Ouvir áudio da psiquiatra sobre compras por impulso">
                 Quero Ouvir Sobre Isso! 🎯
             </button>
-        </div>
+        </section>
 
-        <!-- Audio Section -->
-        <div id="audio-section" class="audio-section">
-            <h3 style="font-size: 1.4em; margin-bottom: 10px;">🎵 OUÇA O ÁUDIO</h3>
+        <section id="audio-section" class="audio-section is-hidden" aria-labelledby="audio-heading">
+            <h3 id="audio-heading" style="font-size: 1.4em; margin-bottom: 10px;">🎵 OUÇA O ÁUDIO</h3>
             <p style="font-size: 1em; opacity: 0.9; margin-bottom: 20px;">O que a psiquiatra Ana Beatriz fala sobre comprar por impulso?</p>
             
-            <audio id="hypnosisAudio" preload="metadata" aria-controls="audio-controls" aria-label="Áudio de hipnoterapia">
+            <audio id="hypnosisAudio" preload="metadata" aria-controls="audio-controls" aria-label="Áudio de hipnoterapia para compras por impulso">
                 <source src="https://appestoicismo.github.io/parardegastar/paredegastar1.MP3" type="audio/mpeg">
                 Seu navegador não suporta o elemento de áudio.
             </audio>
             
             <div class="custom-audio-player" id="audio-controls">
-                <div class="audio-controls">
-                    <button id="playPauseBtn" class="audio-btn" aria-label="Reproduzir ou pausar áudio" aria-controls="hypnosisAudio">
-                        <span id="playIcon">▶️</span>
-                        <span id="pauseIcon" style="display: none;">⏸️</span>
-                        <span class="sr-only">Botão de reprodução</span>
-                    </button>
-                    
-                    <div class="progress-container">
-                        <div class="time-display">
-                            <span id="currentTime">00:00</span>
-                        </div>
-                        <div class="progress-bar-audio">
-                            <div class="progress-fill-audio" id="progressFillAudio"></div>
-                            <input type="range" id="progressSlider" min="0" max="100" value="0" class="progress-slider" 
-                                   aria-label="Barra de progresso do áudio" aria-valuenow="0">
-                        </div>
-                        <div class="time-display">
-                            <span id="duration">00:00</span>
-                        </div>
-                    </div>
-                    
-                    <div class="speed-control">
-                        <label for="speedSelect" style="font-size: 0.85em; margin-right: 6px;">⚡</label>
-                        <select id="speedSelect" class="speed-select" aria-label="Velocidade de reprodução">
-                            <option value="0.5">0.5x</option>
-                            <option value="0.75">0.75x</option>
-                            <option value="1" selected>1x</option>
-                            <option value="1.25">1.25x</option>
-                            <option value="1.5">1.5x</option>
-                            <option value="2">2x</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="volume-control">
-                    <span style="font-size: 0.85em; margin-right: 6px;" aria-hidden="true">🔊</span>
-                    <input type="range" id="volumeSlider" min="0" max="100" value="100" class="volume-slider" 
-                           aria-label="Controle de volume" aria-valuenow="100">
-                </div>
             </div>
 
             <div class="audio-tip">
                 💡 Use fones para melhor efeito (opcional)
             </div>
-        </div>
+        </section>
 
-        <!-- Offer Section -->
-        <div id="offer-section" class="offer-section">
-            <h3 style="font-size: 1.6em; margin-bottom: 15px;">
+        <section id="offer-section" class="offer-section is-hidden" aria-labelledby="offer-heading">
+            <h3 id="offer-heading" style="font-size: 1.6em; margin-bottom: 15px;">
                 🎯 OFERTA IMPERDÍVEL - APENAS HOJE!
             </h3>
             
@@ -1211,11 +1047,9 @@
                 R$ 19,90
             </div>
 
-            <!-- Dynamic Benefits -->
             <div id="dynamic-benefits" class="dynamic-benefits">
                 <h4 style="text-align: center; margin-bottom: 10px; font-size: 1.1em;">🎯 BENEFÍCIOS PERSONALIZADOS PARA VOCÊ:</h4>
                 <ul id="personalized-bullets">
-                    <!-- Dynamic bullets will be inserted here -->
                 </ul>
             </div>
             
@@ -1265,13 +1099,21 @@
                 </div>
             </div>
 
-            <!-- How to Use Section -->
-            <div class="how-to-use">
-                <h4>📋 COMO USAR O ÁUDIO:</h4>
-                <ol>
-                    <li><strong>Ambiente:</strong> Use fones ou encontre um local silencioso</li>
-                    <li><strong>Frequência:</strong> Ouça 1x por dia durante 7 dias</li>
-                    <li><strong>Momento ideal:</strong> Antes de compras online ou saídas ao shopping</li>
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; margin: 20px 0; text-align: left;">
+                <h4 style="text-align: center; margin-bottom: 15px; font-size: 1.2em;">📋 COMO USAR O ÁUDIO:</h4>
+                <ol style="list-style: none; counter-reset: step; padding: 0;">
+                    <li style="counter-increment: step; margin-bottom: 10px; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; top: 0; background: rgba(255, 255, 255, 0.2); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: bold;">1</span>
+                        <strong>Ambiente:</strong> Use fones ou encontre um local silencioso
+                    </li>
+                    <li style="counter-increment: step; margin-bottom: 10px; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; top: 0; background: rgba(255, 255, 255, 0.2); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: bold;">2</span>
+                        <strong>Frequência:</strong> Ouça 1x por dia durante 7 dias
+                    </li>
+                    <li style="counter-increment: step; margin-bottom: 10px; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; top: 0; background: rgba(255, 255, 255, 0.2); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: bold;">3</span>
+                        <strong>Momento ideal:</strong> Antes de compras online ou saídas ao shopping
+                    </li>
                 </ol>
             </div>
             
@@ -1282,862 +1124,911 @@
             
             <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" 
                target="_blank" 
-               rel="noopener noreferrer" 
+               rel="noopener noreferrer sponsored" 
                class="checkout-link">
-                <button class="cta-button purchase-special" aria-label="Acessar áudio de hipnoterapia agora">
+                <button class="cta-button purchase-special" aria-label="Acessar áudio de hipnoterapia agora por R$19,90">
                     ACESSAR MEU ÁUDIO AGORA! 🚀
                 </button>
             </a>
-        </div>
+        </section>
 
-        <!-- Testimonials Section -->
-        <div id="testimonials" class="testimonials">
-            <h3>💬 O QUE NOSSOS CLIENTES DIZEM:</h3>
+        <section id="testimonials" class="testimonials is-hidden" aria-labelledby="testimonials-heading">
+            <h3 id="testimonials-heading">💬 O QUE NOSSOS CLIENTES DIZEM:</h3>
             <div class="testimonial-grid" id="testimonial-container">
-                <!-- Testimonials will be inserted here -->
             </div>
-        </div>
+        </section>
 
-        <!-- FAQ Section -->
-        <div id="faq" class="faq">
-            <h3>❓ PERGUNTAS FREQUENTES:</h3>
+        <section id="faq" class="faq is-hidden" aria-labelledby="faq-heading">
+            <h3 id="faq-heading">❓ PERGUNTAS FREQUENTES:</h3>
             <div id="faq-container">
-                <!-- FAQ items will be inserted here -->
             </div>
-        </div>
+        </section>
+    </main>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p>Conteúdo de Hipnoterapia; não substitui aconselhamento médico/Medicamentos.</p>
-            <p style="margin-top: 10px; font-size: 0.8em;">© 2025 - Todos os direitos reservados</p>
-        </div>
-    </div>
+    <footer class="footer">
+        <p>Conteúdo de Hipnoterapia; não substitui aconselhamento médico/Medicamentos.</p>
+        <p style="margin-top: 10px;">&copy; 2024. Todos os direitos reservados.</p>
+    </footer>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Voltar ao topo">
-        ↑
+    <button id="back-to-top" class="back-to-top is-hidden" aria-label="Voltar ao topo">
+        &#8679;
     </button>
 
     <script>
-        // Global Variables and Configuration
-        let answers = {};
-        let currentQuestion = 1;
-        let offerShown = false;
-        let timeListened = 0;
-        let actualListeningTime = 0;
-        let OFFER_REVEAL_SECONDS = 5;
-        let appliedVariation = null;
-
-        // Personalized Messages Map (Q1 + Q3 combination)
-        const personalizedMessages = {
-            a: { // Q3 = controle financeiro
-                a: "<strong>💼 Controle + Culpa Imediata</strong><br><br>Sua combinação revela uma mente analítica que se cobra por cada deslize financeiro. A culpa que você sente após compras impulsivas na verdade demonstra sua consciência sobre a importância do controle. Seu subconsciente já sabe o caminho - você só precisa da ferramenta certa para transformar essa culpa em disciplina positiva.",
-                b: "<strong>💼 Controle + Arrependimento</strong><br><br>Você possui uma visão clara de que controle financeiro traz liberdade, mas o arrependimento ainda trava seus progressos. Essa tensão entre o que você sabe ser certo e o que faz impulsivamente é exatamente onde a hipnoterapia atua - realinhando suas ações com suas intenções conscientes.",
-                c: "<strong>💼 Controle + Ansiedade</strong><br><br>A ansiedade com as contas revela que você entende as consequências reais das compras impulsivas. Seu desejo por controle financeiro nasce de uma necessidade genuína de segurança. A hipnoterapia pode transformar essa ansiedade em motivação positiva para decisões mais conscientes.",
-                d: "<strong>💼 Controle + Vazio</strong><br><br>Você reconhece que o vazio após compras impulsivas só pode ser preenchido com controle genuíno sobre suas finanças. Essa percepção profunda mostra maturidade emocional - você sabe que controle financeiro traz satisfação duradoura, não apenas prazer momentâneo.",
-                e: "<strong>💼 Controle + Raiva</strong><br><br>A raiva de si mesmo após compras impulsivas é o combustível perfeito para desenvolver controle financeiro real. Você tem energia emocional suficiente para mudança - só precisa direcionar essa força para construir novos padrões ao invés de se punir pelos antigos."
-            },
-            b: { // Q3 = paz mental
-                a: "<strong>😌 Paz Mental + Culpa</strong><br><br>Você entende que a verdadeira riqueza está na tranquilidade mental. A culpa que sente após compras impulsivas é seu sistema interno pedindo por harmonia. Seu subconsciente já sabe que paz mental vale mais que qualquer objeto - a hipnoterapia vai fortalecer essa sabedoria interna.",
-                b: "<strong>😌 Paz Mental + Arrependimento</strong><br><br>Sua busca por paz mental mostra alta inteligência emocional. O arrependimento financeiro rouba sua serenidade - você reconhece isso. A hipnoterapia pode quebrar esse ciclo, substituindo o arrependimento por decisões conscientes que alimentam sua paz interior.",
-                c: "<strong>😌 Paz Mental + Ansiedade</strong><br><br>A ansiedade financeira é o oposto da paz que você busca. Você tem clareza de que tranquilidade mental é mais valiosa que qualquer compra. A hipnoterapia pode transformar essa ansiedade em serenidade duradoura, alinhando suas ações com sua busca por harmonia.",
-                d: "<strong>😌 Paz Mental + Vazio</strong><br><br>Você percebe que o vazio pós-compra nunca traz a paz que realmente busca. Essa consciência é poderosa - mostra que você sabe onde encontrar satisfação real. A hipnoterapia vai amplificar essa sabedoria, criando paz genuína que não depende de consumo.",
-                e: "<strong>😌 Paz Mental + Raiva</strong><br><br>A raiva consigo mesmo perturba a paz mental que você tanto valoriza. Você reconhece que serenidade é incompatível com esse ciclo de compra-raiva-culpa. A hipnoterapia pode transformar essa raiva em autocompaixão e decisões mais harmoniosas."
-            },
-            c: { // Q3 = orgulho/disciplina
-                a: "<strong>💪 Disciplina + Culpa</strong><br><br>Você valoriza disciplina e por isso a culpa após compras impulsivas é tão intensa. Essa culpa é na verdade seu sistema interno cobrando consistência. Você tem potencial para disciplina - precisa apenas da ferramenta certa para transformar culpa em força de vontade positiva.",
-                b: "<strong>💪 Disciplina + Arrependimento</strong><br><br>O arrependimento financeiro alimenta seu desejo por disciplina genuína. Você se cobra porque sabe do que é capaz quando mantém consistência. A hipnoterapia pode transformar esse arrependimento em combustível para construir a disciplina que você admira em si mesmo.",
-                c: "<strong>💪 Disciplina + Ansiedade</strong><br><br>A ansiedade com contas na verdade demonstra que você leva disciplina a sério. Você se preocupa porque tem padrões altos para si mesmo. Essa tensão pode se tornar sua maior força - a hipnoterapia vai canalizar essa energia para disciplina construtiva.",
-                d: "<strong>💪 Disciplina + Vazio</strong><br><br>O vazio pós-compra contrasta diretamente com o orgulho que você sente quando age com disciplina. Você conhece a diferença - isso é poder. A hipnoterapia pode amplificar esses momentos de orgulho genuíno, tornando a disciplina seu estado natural.",
-                e: "<strong>💪 Disciplina + Raiva</strong><br><br>A raiva consigo mesmo mostra que você tem energia e padrões elevados - ingredientes perfeitos para disciplina real. Você se irrita porque sabe do seu potencial. A hipnoterapia pode direcionar essa intensidade emocional para construir disciplina duradoura."
-            },
-            d: { // Q3 = segurança
-                a: "<strong>🛡️ Segurança + Culpa</strong><br><br>Você entende que segurança financeira é construída através de escolhas consistentes. A culpa após compras impulsivas é seu sistema interno protegendo seu futuro. Essa consciência é valiosa - a hipnoterapia pode transformar culpa em decisões que fortalecem sua segurança.",
-                b: "<strong>🛡️ Segurança + Arrependimento</strong><br><br>O arrependimento financeiro reflete sua compreensão profunda sobre a importância da segurança. Você se arrepende porque cada compra impulsiva afasta você da proteção que busca. A hipnoterapia pode realinhar suas ações com essa visão de longo prazo.",
-                c: "<strong>🛡️ Segurança + Ansiedade</strong><br><br>A ansiedade com contas é seu sistema de alerta trabalhando perfeitamente - você reconhece ameaças à sua segurança financeira. Essa consciência é seu escudo protetor. A hipnoterapia pode transformar ansiedade em ações que fortalecem sua proteção financeira.",
-                d: "<strong>🛡️ Segurança + Vazio</strong><br><br>O vazio após compras impulsivas contrasta com a sensação de proteção que você busca. Você sabe que segurança real vem de escolhas conscientes, não de gratificação momentânea. A hipnoterapia pode alinhar suas ações com essa sabedoria protetiva.",
-                e: "<strong>🛡️ Segurança + Raiva</strong><br><br>A raiva consigo mesmo após compras impulsivas mostra que você leva segurança financeira a sério. Essa energia emocional intensa pode ser sua aliada - a hipnoterapia vai canalizar essa força para decisões que constroem proteção real."
-            },
-            e: { // Q3 = felicidade duradoura
-                a: "<strong>😊 Felicidade + Culpa</strong><br><br>Você busca felicidade genuína e por isso a culpa pós-compra é tão marcante - você sabe que alegria real não vem de objetos. Essa sabedoria é preciosa. A hipnoterapia pode amplificar essa consciência, direcionando você para fontes autênticas de satisfação.",
-                b: "<strong>😊 Felicidade + Arrependimento</strong><br><br>O arrependimento financeiro mostra que você distingue entre prazer momentâneo e felicidade duradoura. Você se arrepende porque sabe que verdadeira alegria vem de escolhas alinhadas com seus valores. A hipnoterapia pode fortalecer essa distinção valiosa.",
-                c: "<strong>😊 Felicidade + Ansiedade</strong><br><br>A ansiedade financeira rouba a felicidade que você tanto valoriza. Você reconhece que tranquilidade financeira é base para alegria genuína. A hipnoterapia pode transformar essa ansiedade em decisões que alimentam felicidade duradoura ao invés de estresse constante.",
-                d: "<strong>😊 Felicidade + Vazio</strong><br><br>O vazio pós-compra é o oposto da felicidade plena que você busca. Você tem consciência de que alegria real é sustentável, não efêmera. Essa percepção profunda é seu guia - a hipnoterapia vai amplificar sua capacidade de encontrar satisfação duradoura.",
-                e: "<strong>😊 Felicidade + Raiva</strong><br><br>A raiva consigo mesmo interfere na felicidade que você valoriza. Você reconhece que alegria genuína é incompatível com esse ciclo de compra-raiva-culpa. A hipnoterapia pode substituir esse padrão destrutivo por escolhas que alimentam felicidade real."
+        // ===== CONFIGURATION =====
+        const CONFIG = {
+            PIXEL_ID: '1127160492081134',
+            AUDIO_URL: 'https://appestoicismo.github.io/parardegastar/paredegastar1.MP3',
+            CHECKOUT_URL: 'https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10',
+            TRACKING: {
+                LISTEN_THRESHOLD: 30000, // 30 seconds
+                STATE_SAVE_INTERVAL: 10000, // 10 seconds
+                STATE_MAX_AGE: 86400000 // 24 hours
             }
         };
 
-        // Dynamic Benefits Map
-        const dynamicBenefits = {
-            a: { // Q3 = controle financeiro
-                a: ["Elimine a culpa imediata após compras", "Desenvolva controle financeiro consciente", "Transforme impulsos em decisões calculadas"],
-                b: ["Pare de se arrepender financeiramente", "Construa disciplina financeira sólida", "Ganhe confiança em suas escolhas de dinheiro"],
-                c: ["Reduza a ansiedade com contas", "Fortaleça seu controle sobre gastos", "Desenvolva tranquilidade financeira"],
-                d: ["Preencha o vazio com realizações reais", "Construa controle financeiro genuíno", "Desenvolva satisfação em decisões conscientes"],
-                e: ["Transforme raiva em disciplina positiva", "Desenvolva autocontrole financeiro", "Canalize energia para decisões inteligentes"]
-            },
-            b: { // Q3 = paz mental
-                a: ["Substitua culpa por serenidade", "Alcance paz mental duradoura", "Tome decisões sem peso na consciência"],
-                b: ["Elimine o arrependimento financeiro", "Cultive tranquilidade nas compras", "Desenvolva harmonia interior"],
-                c: ["Transforme ansiedade em calma", "Construa paz mental sólida", "Elimine preocupações financeiras desnecessárias"],
-                d: ["Preencha o vazio com contentamento", "Encontre paz interior genuína", "Desenvolva satisfação sustentável"],
-                e: ["Substitua raiva por autocompaixão", "Alcance serenidade emocional", "Cultive paz duradoura consigo mesmo"]
-            },
-            c: { // Q3 = orgulho/disciplina
-                a: ["Transforme culpa em orgulho pessoal", "Desenvolva disciplina admirável", "Construa autoestima através de controle"],
-                b: ["Substitua arrependimento por conquista", "Fortaleça sua força de vontade", "Desenvolva orgulho genuíno"],
-                c: ["Canalize ansiedade para disciplina", "Construa força interior sólida", "Desenvolva consistência admirável"],
-                d: ["Preencha vazio com realizações", "Construa disciplina que gera orgulho", "Desenvolva satisfação por autocontrole"],
-                e: ["Transforme raiva em determinação", "Fortaleça disciplina através da energia", "Canalize intensidade para conquistas"]
-            },
-            d: { // Q3 = segurança
-                a: ["Elimine culpa construindo proteção", "Fortaleça sua segurança financeira", "Desenvolva tranquilidade protetiva"],
-                b: ["Substitua arrependimento por segurança", "Construa proteção financeira sólida", "Desenvolva confiança no futuro"],
-                c: ["Transforme ansiedade em proteção", "Fortaleça sua reserva de segurança", "Construa estabilidade emocional"],
-                d: ["Preencha vazio com segurança real", "Desenvolva proteção duradoura", "Construa base sólida para o futuro"],
-                e: ["Canalize raiva para proteção", "Fortaleça defesas financeiras", "Transforme energia em segurança"]
-            },
-            e: { // Q3 = felicidade
-                a: ["Substitua culpa por alegria genuína", "Construa felicidade duradoura", "Desenvolva satisfação sustentável"],
-                b: ["Elimine arrependimento, cultive alegria", "Fortaleça fontes reais de felicidade", "Desenvolva contentamento genuíno"],
-                c: ["Transforme ansiedade em bem-estar", "Construa felicidade sólida", "Desenvolva tranquilidade alegre"],
-                d: ["Preencha vazio com felicidade real", "Construa alegria sustentável", "Desenvolva satisfação profunda"],
-                e: ["Substitua raiva por contentamento", "Cultive felicidade interior", "Transforme energia em alegria"]
+        // ===== STATE MANAGEMENT =====
+        class StateManager {
+            constructor() {
+                this.state = {
+                    currentQuestion: 1,
+                    answers: {},
+                    totalListenTime: 0,
+                    audioSessionStartTime: null,
+                    isListening: false,
+                    offerShown: false,
+                    pixelReady: false,
+                    utmsApplied: false,
+                    sessionId: this.generateSessionId()
+                };
+                this.restoreState();
             }
-        };
 
-        // Testimonials Data
-        const testimonialsData = [
-            {
-                text: "Em duas semanas consegui parar de comprar coisas que não precisava. O áudio realmente funciona!",
-                author: "Marina Silva de Almeida.",
-                location: "São Paulo, SP"
-            },
-            {
-                text: "Economizei mais de R$ 800 no primeiro mês. Incrível como nossa mente pode ser reprogramada.",
-                author: "João Carlos dos Santos.",
-                location: "Rio de Janeiro, RJ"
-            },
-            {
-                text: "Finalmente tenho controle sobre meus impulsos. Melhor investimento que já fiz!",
-                author: "Alex Fonseca Jr.",
-                location: "Belo Horizonte, MG"
+            generateSessionId() {
+                return 'pg_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
             }
-        ];
 
-        // FAQ Data
-        const faqData = [
-            {
-                question: "Como funciona a hipnoterapia para compras impulsivas?",
-                answer: "A hipnoterapia trabalha diretamente com o subconsciente, reprogramando os padrões automáticos que levam às compras impulsivas. O áudio utiliza técnicas específicas para criar novos caminhos neurais mais conscientes."
-            },
-            {
-                question: "Preciso acreditar em hipnose para funcionar?",
-                answer: "Não. A hipnoterapia funciona independentemente da sua crença. É um processo natural que acessa estados de relaxamento profundo que todos experimentamos diariamente."
-            },
-            {
-                question: "Quanto tempo demora para ver resultados?",
-                answer: "Muitos clientes relatam mudanças já nas primeiras sessões. Para resultados duradouros, recomendamos ouvir diariamente por 7 dias, conforme orientação."
-            },
-            {
-                question: "É seguro? Tem efeitos colaterais?",
-                answer: "É completamente seguro. A hipnoterapia é reconhecida pela ciência e não possui efeitos colaterais. Você mantém total controle durante o processo."
-            },
-            {
-                question: "E se não funcionar para mim?",
-                answer: "Oferecemos garantia incondicional de 7 dias. Se não ficar satisfeito, devolvemos 100% do valor investido, sem perguntas."
-            }
-        ];
-
-        // Utility Functions
-        function getQueryParam(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        function appendUTMs(url) {
-            const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid'];
-            const urlObj = new URL(url);
-            const currentParams = new URLSearchParams(window.location.search);
-            
-            utmParams.forEach(param => {
-                const value = currentParams.get(param);
-                if (value) {
-                    urlObj.searchParams.set(param, value);
+            saveState() {
+                try {
+                    const stateToSave = {
+                        ...this.state,
+                        timestamp: Date.now()
+                    };
+                    localStorage.setItem('pg_impulse_state', JSON.stringify(stateToSave));
+                } catch (error) {
+                    console.warn('Failed to save state:', error);
                 }
-            });
-            
-            return urlObj.toString();
-        }
-
-        function firePixel(event, params = {}) {
-            try {
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', event, params);
-                }
-            } catch (e) {
-                console.warn('Facebook Pixel error:', e);
             }
-        }
 
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return '00:00';
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = Math.floor(seconds % 60);
-            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
+            restoreState() {
+                try {
+                    const savedState = localStorage.getItem('pg_impulse_state');
+                    if (!savedState) return false;
 
-        // LocalStorage Functions
-        function persistState() {
-            const state = {
-                answers,
-                offerShown,
-                timeListened,
-                actualListeningTime,
-                currentQuestion,
-                appliedVariation,
-                timestamp: Date.now()
-            };
-            try {
-                localStorage.setItem('pg_impulso_state', JSON.stringify(state));
-            } catch (e) {
-                console.warn('LocalStorage save failed:', e);
-            }
-        }
+                    const state = JSON.parse(savedState);
+                    const age = Date.now() - (state.timestamp || 0);
 
-        function restoreState() {
-            try {
-                const saved = localStorage.getItem('pg_impulso_state');
-                if (saved) {
-                    const state = JSON.parse(saved);
-                    const age = Date.now() - state.timestamp;
-                    
-                    // Restore if less than 24 hours old
-                    if (age < 24 * 60 * 60 * 1000) {
-                        answers = state.answers || {};
-                        offerShown = state.offerShown || false;
-                        timeListened = state.timeListened || 0;
-                        actualListeningTime = state.actualListeningTime || 0;
-                        currentQuestion = state.currentQuestion || 1;
-                        appliedVariation = state.appliedVariation;
+                    if (age < CONFIG.TRACKING.STATE_MAX_AGE) {
+                        Object.assign(this.state, state);
                         return true;
                     }
+                } catch (error) {
+                    console.warn('Failed to restore state:', error);
                 }
-            } catch (e) {
-                console.warn('LocalStorage restore failed:', e);
+                return false;
             }
-            return false;
+
+            updateState(updates) {
+                Object.assign(this.state, updates);
+                this.saveState();
+            }
         }
 
-        // Smart Scroll System Functions
-        function initSmartScroll() {
-            enhanceNavigationFlow();
-            addScrollIndicators();
-            addContinueHints();
-        }
+        // ===== FACEBOOK PIXEL TRACKING =====
+        class PixelTracker {
+            constructor(stateManager) {
+                this.stateManager = stateManager;
+                this.initPixel();
+            }
 
-        function enhanceNavigationFlow() {
-            // Enhanced startQuiz with smooth scroll
-            const originalStartQuiz = window.startQuiz;
-            window.startQuiz = function() {
-                if (originalStartQuiz) originalStartQuiz();
-                setTimeout(() => {
-                    document.getElementById('quiz-container').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 300);
-            };
-
-            // Enhanced selectOption with navigation flow
-            const originalSelectOption = window.selectOption;
-            window.selectOption = function(questionNum, option, element) {
-                if (originalSelectOption) originalSelectOption(questionNum, option, element);
-                
-                if (questionNum < 3) {
-                    setTimeout(() => {
-                        const nextQuestion = document.getElementById('question' + (questionNum + 1));
-                        if (nextQuestion && !nextQuestion.classList.contains('is-hidden')) {
-                            nextQuestion.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
-                            });
-                        }
-                    }, 900);
+            initPixel() {
+                // Pixel is already loaded in HTML head
+                if (typeof fbq !== 'undefined') {
+                    this.stateManager.updateState({ pixelReady: true });
+                    console.log('Facebook Pixel initialized successfully');
                 } else {
-                    setTimeout(() => {
-                        document.getElementById('result-page').scrollIntoView({
+                    console.warn('Facebook Pixel not loaded');
+                }
+            }
+
+            track(eventName, parameters = {}) {
+                if (!this.stateManager.state.pixelReady) {
+                    console.warn('Pixel not ready, queuing event:', eventName);
+                    return;
+                }
+
+                try {
+                    // Add common parameters
+                    const enrichedParams = {
+                        ...parameters,
+                        session_id: this.stateManager.state.sessionId,
+                        timestamp: Date.now(),
+                        page_url: window.location.href
+                    };
+
+                    fbq('track', eventName, enrichedParams);
+                    console.log('Pixel event tracked:', eventName, enrichedParams);
+                } catch (error) {
+                    console.error('Pixel tracking error:', error);
+                }
+            }
+
+            trackCustomEvent(eventName, parameters = {}) {
+                this.track('CustomEvent', {
+                    event_name: eventName,
+                    ...parameters
+                });
+            }
+        }
+
+        // ===== UTM TRACKING =====
+        class UTMTracker {
+            constructor() {
+                this.utmParams = this.extractUTMs();
+            }
+
+            extractUTMs() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid', 'gclid'];
+                const utms = {};
+
+                utmKeys.forEach(key => {
+                    const value = urlParams.get(key);
+                    if (value) utms[key] = value;
+                });
+
+                return utms;
+            }
+
+            appendToUrl(url) {
+                try {
+                    const urlObj = new URL(url);
+                    
+                    // Add UTM parameters
+                    Object.entries(this.utmParams).forEach(([key, value]) => {
+                        urlObj.searchParams.set(key, value);
+                    });
+
+                    // Add tracking parameters
+                    urlObj.searchParams.set('tracking_session', stateManager.state.sessionId);
+                    urlObj.searchParams.set('tracking_time', Date.now().toString());
+
+                    return urlObj.toString();
+                } catch (error) {
+                    console.error('UTM append error:', error);
+                    return url;
+                }
+            }
+
+            applyToAllLinks() {
+                document.querySelectorAll('.checkout-link').forEach(link => {
+                    link.href = this.appendToUrl(link.href);
+                });
+            }
+        }
+
+        // ===== QUIZ SYSTEM =====
+        class QuizManager {
+            constructor(stateManager, pixelTracker) {
+                this.stateManager = stateManager;
+                this.pixelTracker = pixelTracker;
+                this.initQuiz();
+            }
+
+            initQuiz() {
+                const startBtn = document.getElementById('start-quiz-btn');
+                if (startBtn) {
+                    startBtn.addEventListener('click', () => this.startQuiz());
+                }
+
+                // Add event listeners to all option buttons
+                document.querySelectorAll('.option').forEach(button => {
+                    button.addEventListener('click', (e) => this.selectOption(e.target));
+                });
+            }
+
+            startQuiz() {
+                document.getElementById('homepage').classList.add('is-hidden');
+                document.getElementById('quiz-container').classList.remove('is-hidden');
+                
+                this.updateProgress();
+                
+                this.pixelTracker.track('ViewContent', {
+                    content_name: 'Quiz Started',
+                    content_category: 'Quiz',
+                    step: 'quiz_start'
+                });
+
+                this.scrollToElement('quiz-container');
+            }
+
+            selectOption(button) {
+                const questionNum = parseInt(button.dataset.question);
+                const value = button.dataset.value;
+
+                // Remove previous selections
+                const options = button.parentNode.querySelectorAll('.option');
+                options.forEach(opt => opt.classList.remove('selected', 'is-active'));
+
+                // Add selection to clicked option
+                button.classList.add('selected', 'is-active');
+                
+                // Update state
+                const answers = { ...this.stateManager.state.answers };
+                answers[questionNum] = value;
+                this.stateManager.updateState({ answers });
+
+                // Track selection
+                this.pixelTracker.trackCustomEvent('Quiz_Question_Answered', {
+                    content_name: `Question ${questionNum} Answered`,
+                    question_number: questionNum,
+                    answer: value,
+                    quiz_progress: Math.round((questionNum / 3) * 100)
+                });
+
+                // Move to next question or show results
+                setTimeout(() => {
+                    if (questionNum < 3) {
+                        this.nextQuestion(questionNum);
+                    } else {
+                        this.showResults();
+                    }
+                }, 800);
+            }
+
+            nextQuestion(currentQuestion) {
+                document.getElementById(`question${currentQuestion}`).classList.add('is-hidden');
+                document.getElementById(`question${currentQuestion + 1}`).classList.remove('is-hidden');
+                
+                this.stateManager.updateState({ currentQuestion: currentQuestion + 1 });
+                this.updateProgress();
+                
+                setTimeout(() => {
+                    this.scrollToElement(`question${currentQuestion + 1}`);
+                }, 100);
+            }
+
+            updateProgress() {
+                const progress = ((this.stateManager.state.currentQuestion - 1) / 3) * 100;
+                const progressFill = document.getElementById('progress-fill');
+                if (progressFill) {
+                    progressFill.style.width = progress + '%';
+                }
+            }
+
+            showResults() {
+                document.getElementById('quiz-container').classList.add('is-hidden');
+                document.getElementById('result-page').classList.remove('is-hidden');
+
+                this.renderPersonalizedMessage();
+
+                // Track qualified lead
+                this.pixelTracker.track('Lead', {
+                    content_name: 'Quiz Completed - Qualified Lead',
+                    content_category: 'Quiz Completion',
+                    quiz_answers: JSON.stringify(this.stateManager.state.answers),
+                    lead_quality: 'high'
+                });
+
+                this.scrollToElement('result-page');
+            }
+
+            renderPersonalizedMessage() {
+                const answers = this.stateManager.state.answers;
+                const q1 = answers[1];
+                const q3 = answers[3];
+                
+                const messages = this.getPersonalizedMessages();
+                const message = messages[q3] && messages[q3][q1] ? messages[q3][q1] : messages.default;
+                
+                const messageContainer = document.getElementById('personalized-message');
+                if (messageContainer) {
+                    messageContainer.innerHTML = message;
+                }
+            }
+
+            getPersonalizedMessages() {
+                return {
+                    a: { // Q3 = controle financeiro
+                        a: "<strong>💼 Controle + Culpa Imediata</strong><br><br>Sua combinação revela uma mente analítica que se cobra por cada deslize financeiro. A culpa que você sente após compras impulsivas na verdade demonstra sua consciência sobre a importância do controle. Seu subconsciente já sabe o caminho - você só precisa da ferramenta certa para transformar essa culpa em disciplina positiva.",
+                        b: "<strong>💼 Controle + Arrependimento</strong><br><br>Você possui uma visão clara de que controle financeiro traz liberdade, mas o arrependimento ainda trava seus progressos. Essa tensão entre o que você sabe ser certo e o que faz impulsivamente é exatamente onde a hipnoterapia atua - realinhando suas ações com suas intenções conscientes.",
+                        c: "<strong>💼 Controle + Ansiedade</strong><br><br>A ansiedade com as contas revela que você entende as consequências reais das compras impulsivas. Seu desejo por controle financeiro nasce de uma necessidade genuína de segurança. A hipnoterapia pode transformar essa ansiedade em motivação positiva para decisões mais conscientes.",
+                        d: "<strong>💼 Controle + Vazio</strong><br><br>Você reconhece que o vazio após compras impulsivas só pode ser preenchido com controle genuíno sobre suas finanças. Essa percepção profunda mostra maturidade emocional - você sabe que controle financeiro traz satisfação duradoura, não apenas prazer momentâneo.",
+                        e: "<strong>💼 Controle + Raiva</strong><br><br>A raiva de si mesmo após compras impulsivas é o combustível perfeito para desenvolver controle financeiro real. Você tem energia emocional suficiente para mudança - só precisa direcionar essa força para construir novos padrões ao invés de se punir pelos antigos."
+                    },
+                    b: { // Q3 = paz mental
+                        a: "<strong>😌 Paz Mental + Culpa</strong><br><br>Você entende que a verdadeira riqueza está na tranquilidade mental. A culpa que sente após compras impulsivas é seu sistema interno pedindo por harmonia. Seu subconsciente já sabe que paz mental vale mais que qualquer objeto - a hipnoterapia vai fortalecer essa sabedoria interna.",
+                        b: "<strong>😌 Paz Mental + Arrependimento</strong><br><br>Sua busca por paz mental mostra alta inteligência emocional. O arrependimento financeiro rouba sua serenidade - você reconhece isso. A hipnoterapia pode quebrar esse ciclo, substituindo o arrependimento por decisões conscientes que alimentam sua paz interior.",
+                        c: "<strong>😌 Paz Mental + Ansiedade</strong><br><br>A ansiedade financeira é o oposto da paz que você busca. Você tem clareza de que tranquilidade mental é mais valiosa que qualquer compra. A hipnoterapia pode transformar essa ansiedade em serenidade duradoura, alinhando suas ações com sua busca por harmonia.",
+                        d: "<strong>😌 Paz Mental + Vazio</strong><br><br>Você percebe que o vazio pós-compra nunca traz a paz que realmente busca. Essa consciência é poderosa - mostra que você sabe onde encontrar satisfação real. A hipnoterapia vai amplificar essa sabedoria, criando paz genuína que não depende de consumo.",
+                        e: "<strong>😌 Paz Mental + Raiva</strong><br><br>A raiva consigo mesmo perturba a paz mental que você tanto valoriza. Você reconhece que serenidade é incompatível com esse ciclo de compra-raiva-culpa. A hipnoterapia pode transformar essa raiva em autocompaixão e decisões mais harmoniosas."
+                    },
+                    c: { // Q3 = orgulho/disciplina
+                        a: "<strong>💪 Disciplina + Culpa</strong><br><br>Você valoriza disciplina e por isso a culpa após compras impulsivas é tão intensa. Essa culpa é na verdade seu sistema interno cobrando consistência. Você tem potencial para disciplina - precisa apenas da ferramenta certa para transformar culpa em força de vontade positiva.",
+                        b: "<strong>💪 Disciplina + Arrependimento</strong><br><br>O arrependimento financeiro alimenta seu desejo por disciplina genuína. Você se cobra porque sabe do que é capaz quando mantém consistência. A hipnoterapia pode transformar esse arrependimento em combustível para construir a disciplina que você admira em si mesmo.",
+                        c: "<strong>💪 Disciplina + Ansiedade</strong><br><br>A ansiedade com contas na verdade demonstra que você leva disciplina a sério. Você se preocupa porque tem padrões altos para si mesmo. Essa tensão pode se tornar sua maior força - a hipnoterapia vai canalizar essa energia para disciplina construtiva.",
+                        d: "<strong>💪 Disciplina + Vazio</strong><br><br>O vazio pós-compra contrasta diretamente com o orgulho que você sente quando age com disciplina. Você conhece a diferença - isso é poder. A hipnoterapia pode amplificar esses momentos de orgulho genuíno, tornando a disciplina seu estado natural.",
+                        e: "<strong>💪 Disciplina + Raiva</strong><br><br>A raiva consigo mesmo mostra que você tem energia e padrões elevados - ingredientes perfeitos para disciplina real. Você se irrita porque sabe do seu potencial. A hipnoterapia pode direcionar essa intensidade emocional para construir disciplina duradoura."
+                    },
+                    d: { // Q3 = segurança
+                        a: "<strong>🛡️ Segurança + Culpa</strong><br><br>Você entende que segurança financeira é construída através de escolhas consistentes. A culpa após compras impulsivas é seu sistema interno protegendo seu futuro. Essa consciência é valiosa - a hipnoterapia pode transformar culpa em decisões que fortalecem sua segurança.",
+                        b: "<strong>🛡️ Segurança + Arrependimento</strong><br><br>O arrependimento financeiro reflete sua compreensão profunda sobre a importância da segurança. Você se arrepende porque cada compra impulsiva afasta você da proteção que busca. A hipnoterapia pode realinhar suas ações com essa visão de longo prazo.",
+                        c: "<strong>🛡️ Segurança + Ansiedade</strong><br><br>A ansiedade com contas é seu sistema de alerta trabalhando perfeitamente - você reconhece ameaças à sua segurança financeira. Essa preocupação genuína pode se tornar sua maior força quando canalizada corretamente através da hipnoterapia.",
+                        d: "<strong>🛡️ Segurança + Vazio</strong><br><br>O contraste entre o vazio pós-compra e a segurança que você busca é cristalino para você. Essa clareza é um dom - você sabe que segurança real vem de escolhas consistentes, não de compras impulsivas. A hipnoterapia vai fortalecer essa sabedoria.",
+                        e: "<strong>🛡️ Segurança + Raiva</strong><br><br>A raiva após compras impulsivas mostra que você leva segurança financeira muito a sério. Essa intensidade emocional é energia pura para mudança - a hipnoterapia pode transformar essa raiva em determinação para construir a segurança que você merece."
+                    },
+                    e: { // Q3 = felicidade
+                        a: "<strong>😊 Felicidade + Culpa</strong><br><br>Você busca felicidade genuína e por isso a culpa pós-compra é tão dolorosa - você sabe que não é assim que se constrói alegria real. Essa consciência é preciosa. A hipnoterapia pode ajudar você a encontrar satisfação duradoura investindo no que realmente importa.",
+                        b: "<strong>😊 Felicidade + Arrependimento</strong><br><br>O arrependimento financeiro rouba sua alegria - e você percebe isso claramente. Sua busca por felicidade duradoura através de investimentos conscientes mostra sabedoria emocional. A hipnoterapia pode quebrar o ciclo compra-arrependimento e abrir espaço para alegria genuína.",
+                        c: "<strong>😊 Felicidade + Ansiedade</strong><br><br>A ansiedade financeira é o oposto da felicidade que você busca. Você tem a sabedoria de saber que alegria real vem de investir no que importa, não de compras impulsivas. A hipnoterapia pode transformar essa ansiedade em serenidade e decisões mais felizes.",
+                        d: "<strong>😊 Felicidade + Vazio</strong><br><br>O vazio pós-compra contrasta totalmente com a felicidade duradoura que você busca. Você sabe a diferença entre prazer momentâneo e alegria real. A hipnoterapia pode amplificar essa sabedoria, direcionando sua energia para investimentos que trazem felicidade genuína.",
+                        e: "<strong>😊 Felicidade + Raiva</strong><br><br>A raiva consigo mesmo após compras impulsivas mostra que você tem padrões altos para sua felicidade - você não se contenta com alegrias superficiais. Essa exigência interna é um presente. A hipnoterapia pode canalizar essa energia para construir felicidade duradoura."
+                    },
+                    default: "<strong>🎯 Sua Jornada de Transformação</strong><br><br>Suas respostas revelam uma pessoa consciente que busca mudança real. Você já reconhece os padrões que quer transformar - isso é o primeiro e mais importante passo. A hipnoterapia pode ser a ferramenta que você precisa para alinhar suas ações com seus valores mais profundos."
+                };
+            }
+
+            scrollToElement(elementId) {
+                setTimeout(() => {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
-                    }, 900);
-                }
-            };
-
-            // Enhanced showAudio with scroll
-            const originalShowAudio = window.showAudio;
-            window.showAudio = function() {
-                if (originalShowAudio) originalShowAudio();
-                setTimeout(() => {
-                    document.getElementById('audio-section').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    }
                 }, 300);
-            };
-
-            // Enhanced revealOffer with better timing
-            const originalRevealOffer = window.revealOffer;
-            window.revealOffer = function() {
-                if (offerShown || !originalRevealOffer) return;
-                originalRevealOffer();
-                
-                setTimeout(() => {
-                    document.getElementById('offer-section').scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                }, 600);
-            };
+            }
         }
 
-        function addScrollIndicators() {
-            const sections = ['result-page', 'audio-section'];
-            
-            sections.forEach(sectionId => {
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    const scrollHint = document.createElement('div');
-                    scrollHint.className = 'scroll-hint';
-                    scrollHint.innerHTML = '👇 Continue abaixo';
-                    scrollHint.style.cssText = `
-                        text-align: center;
-                        padding: 15px;
-                        color: #666;
-                        font-size: 0.9em;
-                        opacity: 0.7;
-                        display: none;
-                    `;
-                    section.appendChild(scrollHint);
-                    
-                    // Show hint when section becomes visible
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting && section.style.display !== 'none') {
-                                scrollHint.style.display = 'block';
-                                setTimeout(() => {
-                                    scrollHint.style.display = 'none';
-                                }, 4000);
-                            }
-                        });
-                    }, { threshold: 0.5 });
-                    
-                    observer.observe(section);
+        // ===== AUDIO PLAYER =====
+        class AudioPlayer {
+            constructor(stateManager, pixelTracker) {
+                this.stateManager = stateManager;
+                this.pixelTracker = pixelTracker;
+                this.audio = null;
+                this.initAudioPlayer();
+            }
+
+            initAudioPlayer() {
+                const showAudioBtn = document.getElementById('show-audio-btn');
+                if (showAudioBtn) {
+                    showAudioBtn.addEventListener('click', () => this.showAudio());
                 }
-            });
-        }
+            }
 
-        function addContinueHints() {
-            // Add continue hint after personalized message
-            setTimeout(() => {
-                const personalizedMessage = document.getElementById('personalized-message');
-                if (personalizedMessage && !document.querySelector('.continue-hint')) {
-                    const continueHint = document.createElement('button');
-                    continueHint.className = 'continue-hint';
-                    continueHint.innerHTML = '👇 Veja a solução científica abaixo';
-                    continueHint.onclick = () => {
-                        const audioBtn = document.querySelector('.audio-special');
-                        if (audioBtn) {
-                            audioBtn.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
-                            });
-                        }
-                    };
-                    
-                    const container = document.createElement('div');
-                    container.style.textAlign = 'center';
-                    container.appendChild(continueHint);
-                    personalizedMessage.parentNode.insertBefore(container, personalizedMessage.nextSibling);
-                }
-            }, 1000);
-        }
+            showAudio() {
+                document.getElementById('result-page').classList.add('is-hidden');
+                document.getElementById('audio-section').classList.remove('is-hidden');
 
-        function initProgressiveDisclosure() {
-            if (window.innerWidth <= 768) {
-                const longTexts = document.querySelectorAll('.simple-text');
-                
-                longTexts.forEach(text => {
-                    if (text.textContent.length > 120) {
-                        const originalText = text.textContent;
-                        const shortText = originalText.substring(0, 90) + '...';
-                        
-                        text.textContent = shortText;
-                        
-                        const readMore = document.createElement('span');
-                        readMore.innerHTML = ' <strong style="color: var(--brand-1); cursor: pointer; text-decoration: underline;">Ver mais</strong>';
-                        readMore.onclick = () => {
-                            text.textContent = originalText;
-                            readMore.remove();
-                        };
-                        
-                        text.appendChild(readMore);
-                    }
+                this.pixelTracker.track('ViewContent', {
+                    content_name: 'Audio Section Viewed',
+                    content_category: 'Audio Content',
+                    content_type: 'hypnosis_audio',
+                    intent_level: 'high'
                 });
+
+                this.setupAudioControls();
+                this.scrollToElement('audio-section');
             }
-        }
 
-        function initBackToTop() {
-            const backToTop = document.getElementById('back-to-top');
-            
-            backToTop.onclick = () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
-                    backToTop.classList.add('show');
-                } else {
-                    backToTop.classList.remove('show');
-                }
-            });
-        }
+            setupAudioControls() {
+                this.audio = document.getElementById('hypnosisAudio');
+                if (!this.audio) return;
 
-        function enhanceStickyCTA() {
-            const stickyBar = document.getElementById('sticky-cta');
-            
-            window.addEventListener('scroll', () => {
-                if (stickyBar.style.display === 'flex') {
-                    if (window.scrollY > 200) {
-                        stickyBar.classList.add('scrolled');
-                    } else {
-                        stickyBar.classList.remove('scrolled');
-                    }
-                }
-            });
-        }
+                const controlsContainer = document.getElementById('audio-controls');
+                if (!controlsContainer) return;
 
-        // Core Functions
-        function startQuiz() {
-            document.getElementById('homepage').style.display = 'none';
-            document.getElementById('quiz-container').style.display = 'block';
-            updateProgress();
-            persistState();
-        }
-
-        function selectOption(questionNum, option, element) {
-            // Remove previous selections
-            const options = element.parentNode.children;
-            for (let opt of options) {
-                opt.classList.remove('selected', 'is-active');
-            }
-            
-            // Add selection to clicked option
-            element.classList.add('selected', 'is-active');
-            answers[questionNum] = option;
-            persistState();
-            
-            // Wait then move to next question
-            setTimeout(() => {
-                if (questionNum < 3) {
-                    document.getElementById('question' + questionNum).classList.add('is-hidden');
-                    document.getElementById('question' + (questionNum + 1)).classList.remove('is-hidden');
-                    currentQuestion++;
-                    updateProgress();
-                } else {
-                    showResult();
-                }
-            }, 800);
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion - 1) / 3) * 100;
-            document.getElementById('progress-fill').style.width = progress + '%';
-        }
-
-        function renderPersonalizedMessage() {
-            const personalizedDiv = document.getElementById('personalized-message');
-            const answer1 = answers[1];
-            const answer3 = answers[3];
-            
-            let message = '';
-            
-            if (answer1 && answer3 && personalizedMessages[answer3] && personalizedMessages[answer3][answer1]) {
-                message = personalizedMessages[answer3][answer1];
-            } else {
-                // Fallback message
-                message = `<strong>🎯 Sua Jornada de Transformação</strong><br><br>Suas respostas revelam uma pessoa consciente de seus padrões e desejosa de mudança real. Isso demonstra autoconhecimento e motivação - os ingredientes perfeitos para uma transformação duradoura através da hipnoterapia.`;
-            }
-            
-            personalizedDiv.innerHTML = message;
-        }
-
-        function showResult() {
-            document.getElementById('quiz-container').style.display = 'none';
-            document.getElementById('result-page').style.display = 'block';
-            
-            renderPersonalizedMessage();
-            
-            // Fire Lead event
-            firePixel('Lead', {
-                content_name: 'Quiz Completed',
-                content_category: 'Quiz',
-                value: answers
-            });
-            
-            persistState();
-        }
-
-        function showAudio() {
-            document.getElementById('result-page').style.display = 'none';
-            document.getElementById('audio-section').style.display = 'block';
-            
-            // Fire ViewContent event
-            firePixel('ViewContent', {
-                content_name: 'Audio Hypnosis',
-                content_category: 'Audio Content'
-            });
-            
-            persistState();
-        }
-
-        // Audio Functions
-        function trackListening(delta) {
-            actualListeningTime += delta;
-            persistState();
-        }
-
-        function maybeRevealOffer() {
-            if (!offerShown && actualListeningTime >= OFFER_REVEAL_SECONDS) {
-                revealOffer();
-            }
-        }
-
-        function revealOffer() {
-            if (offerShown) return;
-            
-            const offerSection = document.getElementById('offer-section');
-            offerSection.style.display = 'block';
-            offerShown = true;
-            
-            // Render dynamic benefits
-            renderDynamicBenefits();
-            
-            // Show testimonials and FAQ
-            renderTestimonials();
-            renderFAQ();
-            
-            // Setup sticky CTA
-            setupStickyCTA();
-            
-            // Fire AddToCart event
-            firePixel('AddToCart', {
-                content_name: 'Offer Revealed',
-                content_category: 'Sales Offer',
-                value: 19.90,
-                currency: 'BRL'
-            });
-            
-            persistState();
-        }
-
-        function renderDynamicBenefits() {
-            const bulletsContainer = document.getElementById('personalized-bullets');
-            const answer1 = answers[1];
-            const answer3 = answers[3];
-            
-            let bullets = [];
-            
-            if (answer1 && answer3 && dynamicBenefits[answer3] && dynamicBenefits[answer3][answer1]) {
-                bullets = dynamicBenefits[answer3][answer1];
-            } else {
-                // Fallback bullets
-                bullets = [
-                    "Reprograme padrões automáticos de compra",
-                    "Desenvolva controle consciente sobre impulsos",
-                    "Construa disciplina financeira duradoura"
-                ];
-            }
-            
-            bulletsContainer.innerHTML = bullets.map(bullet => `<li>${bullet}</li>`).join('');
-        }
-
-        function setupStickyCTA() {
-            const stickyBar = document.getElementById('sticky-cta');
-            const container = document.getElementById('main-container');
-            
-            stickyBar.style.display = 'flex';
-            container.classList.add('sticky-active');
-        }
-
-        function renderTestimonials() {
-            const testimonialsSection = document.getElementById('testimonials');
-            const container = document.getElementById('testimonial-container');
-            
-            const html = testimonialsData.map(testimonial => `
-                <div class="testimonial-card">
-                    <div class="testimonial-text">"${testimonial.text}"</div>
-                    <div class="testimonial-author">${testimonial.author}</div>
-                    <div class="testimonial-location">${testimonial.location}</div>
-                </div>
-            `).join('');
-            
-            container.innerHTML = html;
-            testimonialsSection.style.display = 'block';
-        }
-
-        function renderFAQ() {
-            const faqSection = document.getElementById('faq');
-            const container = document.getElementById('faq-container');
-            
-            const html = faqData.map((item, index) => `
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFAQ(${index})" aria-expanded="false" aria-controls="faq-answer-${index}">
-                        ${item.question}
-                    </button>
-                    <div class="faq-answer" id="faq-answer-${index}">
-                        ${item.answer}
+                // Create audio controls HTML
+                controlsContainer.innerHTML = `
+                    <div class="audio-controls">
+                        <button id="playPauseBtn" class="audio-btn" aria-label="Reproduzir ou pausar áudio">
+                            <span id="playIcon">▶️</span>
+                            <span id="pauseIcon" style="display: none;">⏸️</span>
+                        </button>
+                        
+                        <div class="progress-container">
+                            <div class="time-display">
+                                <span id="currentTime">00:00</span>
+                            </div>
+                            <div class="progress-bar-audio">
+                                <div class="progress-fill-audio" id="progressFillAudio"></div>
+                                <input type="range" id="progressSlider" min="0" max="100" value="0" class="progress-slider" 
+                                       aria-label="Barra de progresso do áudio">
+                            </div>
+                            <div class="time-display">
+                                <span id="duration">00:00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="speed-control">
+                            <label for="speedSelect" style="font-size: 0.85em; margin-right: 6px;">⚡</label>
+                            <select id="speedSelect" class="speed-select" aria-label="Velocidade de reprodução">
+                                <option value="0.5">0.5x</option>
+                                <option value="0.75">0.75x</option>
+                                <option value="1" selected>1x</option>
+                                <option value="1.25">1.25x</option>
+                                <option value="1.5">1.5x</option>
+                                <option value="2">2x</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-            `).join('');
-            
-            container.innerHTML = html;
-            faqSection.style.display = 'block';
-        }
-
-        function toggleFAQ(index) {
-            const question = document.querySelector(`.faq-item:nth-child(${index + 1}) .faq-question`);
-            const answer = document.getElementById(`faq-answer-${index}`);
-            
-            const isActive = question.classList.contains('active');
-            
-            // Close all FAQ items
-            document.querySelectorAll('.faq-question').forEach(q => {
-                q.classList.remove('active');
-                q.setAttribute('aria-expanded', 'false');
-            });
-            document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
-            
-            // Open clicked item if it wasn't already open
-            if (!isActive) {
-                question.classList.add('active');
-                question.setAttribute('aria-expanded', 'true');
-                answer.classList.add('active');
-            }
-        }
-
-        function attachCheckoutHandlers() {
-            document.querySelectorAll('.checkout-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const originalHref = this.getAttribute('href');
-                    const newHref = appendUTMs(originalHref);
-                    this.setAttribute('href', newHref);
                     
-                    // Fire InitiateCheckout event
-                    firePixel('InitiateCheckout', {
-                        content_name: 'Checkout Click',
-                        content_category: 'Purchase',
-                        value: 19.90,
-                        currency: 'BRL'
-                    });
+                    <div class="volume-control">
+                        <span style="font-size: 0.85em; margin-right: 6px;">🔊</span>
+                        <input type="range" id="volumeSlider" min="0" max="100" value="100" class="volume-slider" 
+                               aria-label="Controle de volume">
+                    </div>
+                `;
+
+                this.bindAudioEvents();
+            }
+
+            bindAudioEvents() {
+                const playPauseBtn = document.getElementById('playPauseBtn');
+                const playIcon = document.getElementById('playIcon');
+                const pauseIcon = document.getElementById('pauseIcon');
+                const progressFill = document.getElementById('progressFillAudio');
+                const progressSlider = document.getElementById('progressSlider');
+                const currentTimeSpan = document.getElementById('currentTime');
+                const durationSpan = document.getElementById('duration');
+                const speedSelect = document.getElementById('speedSelect');
+                const volumeSlider = document.getElementById('volumeSlider');
+
+                // Play/Pause functionality
+                playPauseBtn.addEventListener('click', () => {
+                    if (this.audio.paused) {
+                        this.audio.play().catch(error => {
+                            console.error('Audio play failed:', error);
+                            this.pixelTracker.trackCustomEvent('Audio_Play_Error', {
+                                error_message: error.message
+                            });
+                        });
+                    } else {
+                        this.audio.pause();
+                    }
                 });
-            });
-        }
 
-        // Audio Player Functions
-        function initAudioPlayer() {
-            const audio = document.getElementById('hypnosisAudio');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const playIcon = document.getElementById('playIcon');
-            const pauseIcon = document.getElementById('pauseIcon');
-            const progressFill = document.getElementById('progressFillAudio');
-            const progressSlider = document.getElementById('progressSlider');
-            const currentTimeSpan = document.getElementById('currentTime');
-            const durationSpan = document.getElementById('duration');
-            const speedSelect = document.getElementById('speedSelect');
-            const volumeSlider = document.getElementById('volumeSlider');
-
-            let lastTime = 0;
-
-            // Play/Pause
-            playPauseBtn.addEventListener('click', function() {
-                if (audio.paused) {
-                    audio.play();
+                // Audio event listeners
+                this.audio.addEventListener('play', () => {
                     playIcon.style.display = 'none';
                     pauseIcon.style.display = 'inline';
-                    lastTime = audio.currentTime;
-                } else {
-                    audio.pause();
+                    this.startListeningSession();
+                });
+
+                this.audio.addEventListener('pause', () => {
                     playIcon.style.display = 'inline';
                     pauseIcon.style.display = 'none';
-                }
-            });
+                    this.endListeningSession();
+                });
 
-            // Update metadata when audio loads
-            audio.addEventListener('loadedmetadata', function() {
-                durationSpan.textContent = formatTime(audio.duration);
-                progressSlider.max = audio.duration;
-            });
+                this.audio.addEventListener('loadedmetadata', () => {
+                    durationSpan.textContent = this.formatTime(this.audio.duration);
+                    progressSlider.max = this.audio.duration;
+                });
 
-            // Track progress and listening time
-            audio.addEventListener('timeupdate', function() {
-                if (!isNaN(audio.duration)) {
-                    const progress = (audio.currentTime / audio.duration) * 100;
-                    progressFill.style.width = progress + '%';
-                    progressSlider.value = audio.currentTime;
-                    progressSlider.setAttribute('aria-valuenow', Math.round(audio.currentTime));
-                    currentTimeSpan.textContent = formatTime(audio.currentTime);
+                this.audio.addEventListener('timeupdate', () => {
+                    if (!isNaN(this.audio.duration)) {
+                        const progress = (this.audio.currentTime / this.audio.duration) * 100;
+                        progressFill.style.width = progress + '%';
+                        progressSlider.value = this.audio.currentTime;
+                        currentTimeSpan.textContent = this.formatTime(this.audio.currentTime);
 
-                    // Track actual listening time (only when playing)
-                    if (!audio.paused && audio.currentTime > lastTime) {
-                        const delta = audio.currentTime - lastTime;
-                        if (delta < 2) { // Prevent jumps from skipping
-                            trackListening(delta);
-                            maybeRevealOffer();
+                        // Check if user has listened enough to show offer
+                        if (this.audio.currentTime > CONFIG.TRACKING.LISTEN_THRESHOLD / 1000 && 
+                            !this.stateManager.state.offerShown) {
+                            this.showOffer();
                         }
                     }
-                    lastTime = audio.currentTime;
-                }
-            });
-
-            // Progress slider control
-            progressSlider.addEventListener('input', function() {
-                audio.currentTime = progressSlider.value;
-                lastTime = audio.currentTime;
-            });
-
-            // Speed control
-            speedSelect.addEventListener('change', function() {
-                audio.playbackRate = parseFloat(speedSelect.value);
-                
-                firePixel('CustomizeProduct', {
-                    content_name: 'Audio Speed Change',
-                    value: speedSelect.value
                 });
-            });
 
-            // Volume control
-            volumeSlider.addEventListener('input', function() {
-                audio.volume = volumeSlider.value / 100;
-                volumeSlider.setAttribute('aria-valuenow', volumeSlider.value);
-            });
-
-            // Audio ended
-            audio.addEventListener('ended', function() {
-                playIcon.style.display = 'inline';
-                pauseIcon.style.display = 'none';
-                progressFill.style.width = '0%';
-                progressSlider.value = 0;
-                currentTimeSpan.textContent = '00:00';
-                
-                firePixel('CompleteRegistration', {
-                    content_name: 'Audio Hypnosis Completed'
+                this.audio.addEventListener('ended', () => {
+                    playIcon.style.display = 'inline';
+                    pauseIcon.style.display = 'none';
+                    progressFill.style.width = '0%';
+                    progressSlider.value = 0;
+                    currentTimeSpan.textContent = '00:00';
+                    this.endListeningSession();
+                    this.showOffer();
                 });
-            });
 
-            // Audio error handling
-            audio.addEventListener('error', function() {
-                console.error('Audio loading error');
-                playPauseBtn.innerHTML = '<span aria-hidden="true">❌</span><span class="sr-only">Erro ao carregar áudio</span>';
-                playPauseBtn.disabled = true;
-                
-                // Show user-friendly error message
-                const errorMsg = document.createElement('div');
-                errorMsg.style.cssText = 'color: #ff6b6b; text-align: center; padding: 10px; background: rgba(255,107,107,0.1); border-radius: 5px; margin-top: 10px;';
-                errorMsg.innerHTML = '⚠️ Erro ao carregar o áudio. Verifique sua conexão e tente novamente.';
-                document.querySelector('.custom-audio-player').appendChild(errorMsg);
-            });
-        }
+                // Progress slider
+                progressSlider.addEventListener('input', () => {
+                    this.audio.currentTime = progressSlider.value;
+                });
 
-        // Variation Testing Functions
-        function applyVariations() {
-            const variation = getQueryParam('v');
-            if (variation) {
-                appliedVariation = variation;
-                
-                // Apply variations based on parameter
-                switch(variation) {
-                    case '2':
-                        // Alternative subheadline
-                        document.querySelector('.sub-headline').textContent = 
-                            'Descubra o método que pessoas comuns usam para eliminar compras por impulso definitivamente.';
-                        break;
-                    case '3':
-                        // Alternative CTA button text
-                        document.querySelector('.cta-button').innerHTML = 
-                            'Quero Descobrir o Método! 🎯';
-                        break;
-                    default:
-                        break;
+                // Speed control
+                speedSelect.addEventListener('change', () => {
+                    this.audio.playbackRate = parseFloat(speedSelect.value);
+                    this.pixelTracker.trackCustomEvent('Audio_Speed_Change', {
+                        value: speedSelect.value
+                    });
+                });
+
+                // Volume control
+                volumeSlider.addEventListener('input', () => {
+                    this.audio.volume = volumeSlider.value / 100;
+                });
+
+                // Error handling
+                this.audio.addEventListener('error', (e) => {
+                    console.error('Audio loading error:', e);
+                    playPauseBtn.innerHTML = '❌';
+                    playPauseBtn.disabled = true;
+                    this.pixelTracker.trackCustomEvent('Audio_Load_Error', {
+                        error_type: 'audio_load_failed'
+                    });
+                });
+            }
+
+            startListeningSession() {
+                this.stateManager.updateState({
+                    isListening: true,
+                    audioSessionStartTime: Date.now()
+                });
+
+                this.pixelTracker.trackCustomEvent('Audio_Play_Started', {
+                    content_name: 'Hypnosis Audio Started',
+                    audio_position: this.audio.currentTime
+                });
+            }
+
+            endListeningSession() {
+                if (this.stateManager.state.audioSessionStartTime) {
+                    const sessionTime = Date.now() - this.stateManager.state.audioSessionStartTime;
+                    const newTotalTime = this.stateManager.state.totalListenTime + sessionTime;
+
+                    this.stateManager.updateState({
+                        isListening: false,
+                        audioSessionStartTime: null,
+                        totalListenTime: newTotalTime
+                    });
+
+                    this.pixelTracker.trackCustomEvent('Audio_Session_End', {
+                        session_duration: sessionTime,
+                        total_listen_time: newTotalTime,
+                        audio_position: this.audio.currentTime
+                    });
                 }
+            }
+
+            showOffer() {
+                if (this.stateManager.state.offerShown) return;
+
+                const offerSection = document.getElementById('offer-section');
+                offerSection.classList.remove('is-hidden');
+                
+                this.stateManager.updateState({ offerShown: true });
+
+                // Render dynamic content
+                this.renderDynamicBenefits();
+                this.renderTestimonials();
+                this.renderFAQ();
+                this.setupStickyCTA();
+
+                // Track AddToCart event
+                this.pixelTracker.track('AddToCart', {
+                    content_name: 'Hypnosis Audio Offer',
+                    content_category: 'Digital Product',
+                    value: 19.90,
+                    currency: 'BRL',
+                    audio_listen_time: this.stateManager.state.totalListenTime,
+                    engagement_level: 'qualified'
+                });
+
+                this.scrollToElement('offer-section');
+            }
+
+            renderDynamicBenefits() {
+                const answers = this.stateManager.state.answers;
+                const q3 = answers[3];
+                
+                const benefits = {
+                    a: ['Controle total sobre suas finanças', 'Decisões conscientes de compra', 'Orçamento sempre equilibrado'],
+                    b: ['Paz mental duradoura', 'Fim da culpa pós-compra', 'Serenidade nas decisões financeiras'],
+                    c: ['Disciplina financeira sólida', 'Orgulho pessoal genuíno', 'Força de vontade desenvolvida'],
+                    d: ['Segurança financeira real', 'Reserva de emergência crescente', 'Tranquilidade para o futuro'],
+                    e: ['Felicidade duradoura', 'Investimentos conscientes', 'Satisfação com escolhas inteligentes']
+                };
+
+                const selectedBenefits = benefits[q3] || benefits.a;
+                const bulletsContainer = document.getElementById('personalized-bullets');
+                
+                if (bulletsContainer) {
+                    bulletsContainer.innerHTML = selectedBenefits
+                        .map(benefit => `<li>${benefit}</li>`)
+                        .join('');
+                }
+            }
+
+            renderTestimonials() {
+                const testimonials = [
+                    {
+                        text: "Incrível como funciona! Em uma semana já notei diferença no meu comportamento de compras.",
+                        author: "Maria Silva",
+                        location: "São Paulo, SP"
+                    },
+                    {
+                        text: "Finalmente consegui controlar meus impulsos. O áudio realmente reprograma a mente!",
+                        author: "João Santos",
+                        location: "Rio de Janeiro, RJ"
+                    },
+                    {
+                        text: "Economizei mais de R$ 500 no primeiro mês. Valeu cada centavo investido!",
+                        author: "Ana Costa",
+                        location: "Belo Horizonte, MG"
+                    }
+                ];
+
+                const testimonialsSection = document.getElementById('testimonials');
+                const container = document.getElementById('testimonial-container');
+                
+                if (container) {
+                    container.innerHTML = testimonials.map(testimonial => `
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">"${testimonial.text}"</div>
+                            <div class="testimonial-author">${testimonial.author}</div>
+                            <div class="testimonial-location">${testimonial.location}</div>
+                        </div>
+                    `).join('');
+                }
+
+                testimonialsSection.classList.remove('is-hidden');
+            }
+
+            renderFAQ() {
+                const faqs = [
+                    {
+                        question: "Como funciona a hipnoterapia para compras?",
+                        answer: "A hipnoterapia trabalha diretamente com o subconsciente, reprogramando os padrões automáticos que levam às compras impulsivas."
+                    },
+                    {
+                        question: "Preciso usar fones de ouvido?",
+                        answer: "Não é obrigatório, mas recomendamos para uma experiência mais imersiva e melhores resultados."
+                    },
+                    {
+                        question: "Em quanto tempo vejo resultados?",
+                        answer: "Muitas pessoas relatam mudanças já na primeira semana de uso regular do áudio."
+                    },
+                    {
+                        question: "A garantia é real?",
+                        answer: "Sim! Oferecemos 7 dias de garantia incondicional. Se não funcionar, devolvemos 100% do valor."
+                    }
+                ];
+
+                const faqSection = document.getElementById('faq');
+                const container = document.getElementById('faq-container');
+                
+                if (container) {
+                    container.innerHTML = faqs.map((faq, index) => `
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(${index})">
+                                ${faq.question}
+                            </button>
+                            <div class="faq-answer" id="faq-answer-${index}">
+                                ${faq.answer}
+                            </div>
+                        </div>
+                    `).join('');
+                }
+
+                faqSection.classList.remove('is-hidden');
+            }
+
+            setupStickyCTA() {
+                const stickyBar = document.getElementById('sticky-cta');
+                const container = document.getElementById('main-container');
+                
+                stickyBar.style.display = 'flex';
+                container.classList.add('sticky-active');
+            }
+
+            formatTime(seconds) {
+                if (isNaN(seconds)) return '00:00';
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }
+
+            scrollToElement(elementId) {
+                setTimeout(() => {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        element.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 600);
             }
         }
 
-        // Configuration from URL parameters
-        function loadConfiguration() {
-            const revealParam = getQueryParam('reveal');
-            if (revealParam && !isNaN(revealParam)) {
-                OFFER_REVEAL_SECONDS = parseInt(revealParam);
+        // ===== CHECKOUT TRACKING =====
+        class CheckoutTracker {
+            constructor(stateManager, pixelTracker, utmTracker) {
+                this.stateManager = stateManager;
+                this.pixelTracker = pixelTracker;
+                this.utmTracker = utmTracker;
+                this.initCheckoutTracking();
+            }
+
+            initCheckoutTracking() {
+                document.addEventListener('click', (e) => {
+                    const checkoutLink = e.target.closest('.checkout-link');
+                    
+                    if (checkoutLink) {
+                        // Update link with UTMs
+                        checkoutLink.href = this.utmTracker.appendToUrl(checkoutLink.href);
+                        
+                        // Track checkout initiation
+                        this.pixelTracker.track('InitiateCheckout', {
+                            content_name: 'Checkout Started',
+                            content_category: 'Purchase',
+                            value: 19.90,
+                            currency: 'BRL',
+                            audio_engagement: this.stateManager.state.totalListenTime,
+                            quiz_completed: Object.keys(this.stateManager.state.answers).length === 3,
+                            checkout_url: checkoutLink.href
+                        });
+                    }
+                });
             }
         }
 
-        // Main Initialization Function
-        function initPage() {
-            // Load configuration from URL
-            loadConfiguration();
-            
-            // Apply A/B test variations
-            applyVariations();
-            
-            // Try to restore previous state
-            const restored = restoreState();
-            
-            // Initialize audio player
-            initAudioPlayer();
-            
-            // Attach checkout handlers
-            attachCheckoutHandlers();
-            
-            // Initialize smart scroll features
-            initSmartScroll();
-            initProgressiveDisclosure();
-            initBackToTop();
-            enhanceStickyCTA();
-            
-            // Add keyboard navigation for options
-            document.addEventListener('keydown', function(e) {
-                if (e.target.classList.contains('option') && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    e.target.click();
-                }
-            });
+        // ===== UI ENHANCEMENTS =====
+        class UIEnhancements {
+            constructor() {
+                this.initBackToTop();
+                this.initStickyEnhancements();
+                this.initKeyboardNavigation();
+            }
 
-            // Fire initial page view
-            firePixel('ViewContent', {
-                content_name: 'Landing Page',
-                content_category: 'Page View'
-            });
-            
-            console.log('Page initialized with reveal time:', OFFER_REVEAL_SECONDS + 's');
-            console.log('Smart scroll system activated');
+            initBackToTop() {
+                const backToTop = document.getElementById('back-to-top');
+                
+                if (backToTop) {
+                    backToTop.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 500) {
+                            backToTop.classList.add('show');
+                        } else {
+                            backToTop.classList.remove('show');
+                        }
+                    });
+                }
+            }
+
+            initStickyEnhancements() {
+                const stickyBar = document.getElementById('sticky-cta');
+                
+                window.addEventListener('scroll', () => {
+                    if (stickyBar && stickyBar.style.display === 'flex') {
+                        if (window.scrollY > 200) {
+                            stickyBar.classList.add('scrolled');
+                        } else {
+                            stickyBar.classList.remove('scrolled');
+                        }
+                    }
+                });
+            }
+
+            initKeyboardNavigation() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.target.classList.contains('option') && (e.key === 'Enter' || e.key === ' ')) {
+                        e.preventDefault();
+                        e.target.click();
+                    }
+                });
+            }
         }
 
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', initPage);
+        // ===== GLOBAL FUNCTIONS =====
+        function toggleFAQ(index) {
+            const question = document.querySelector(`#faq-container .faq-item:nth-child(${index + 1}) .faq-question`);
+            const answer = document.getElementById(`faq-answer-${index}`);
+            
+            if (question && answer) {
+                question.classList.toggle('active');
+                answer.classList.toggle('active');
+            }
+        }
 
-        // Backup initialization for older browsers
+        // ===== INITIALIZATION =====
+        let stateManager, pixelTracker, utmTracker, quizManager, audioPlayer, checkoutTracker, uiEnhancements;
+
+        function initApp() {
+            console.log('Initializing optimized landing page...');
+            
+            // Initialize core systems
+            stateManager = new StateManager();
+            pixelTracker = new PixelTracker(stateManager);
+            utmTracker = new UTMTracker();
+            
+            // Initialize feature modules
+            quizManager = new QuizManager(stateManager, pixelTracker);
+            audioPlayer = new AudioPlayer(stateManager, pixelTracker);
+            checkoutTracker = new CheckoutTracker(stateManager, pixelTracker, utmTracker);
+            uiEnhancements = new UIEnhancements();
+            
+            // Apply UTMs to all checkout links
+            utmTracker.applyToAllLinks();
+            
+            // Auto-save state periodically
+            setInterval(() => stateManager.saveState(), CONFIG.TRACKING.STATE_SAVE_INTERVAL);
+            
+            // Save state before page unload
+            window.addEventListener('beforeunload', () => {
+                if (stateManager.state.isListening && audioPlayer.audio) {
+                    audioPlayer.endListeningSession();
+                }
+                stateManager.saveState();
+            });
+            
+            // Handle page visibility changes
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden && stateManager.state.isListening) {
+                    audioPlayer.endListeningSession();
+                } else if (!document.hidden && stateManager.state.isListening) {
+                    stateManager.updateState({ audioSessionStartTime: Date.now() });
+                }
+            });
+            
+            console.log('Landing page initialized successfully');
+        }
+
+        // ===== ERROR HANDLING =====
+        window.addEventListener('error', (e) => {
+            console.error('JavaScript error:', e.error);
+            
+            if (pixelTracker) {
+                pixelTracker.trackCustomEvent('JavaScript_Error', {
+                    error_message: e.message,
+                    error_filename: e.filename,
+                    error_lineno: e.lineno
+                });
+            }
+        });
+
+        // ===== DEBUG FUNCTIONS =====
+        window.debugLandingPage = function() {
+            console.log('=== LANDING PAGE DEBUG ===');
+            console.log('State:', stateManager?.state);
+            console.log('Pixel Ready:', stateManager?.state?.pixelReady);
+            console.log('Total Listen Time:', stateManager?.state?.totalListenTime);
+            console.log('Offer Shown:', stateManager?.state?.offerShown);
+            console.log('Quiz Answers:', stateManager?.state?.answers);
+            console.log('UTMs:', utmTracker?.utmParams);
+            console.log('Session ID:', stateManager?.state?.sessionId);
+        };
+
+        // ===== STARTUP =====
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initPage);
+            document.addEventListener('DOMContentLoaded', initApp);
         } else {
-            initPage();
+            initApp();
         }
 
-        // Save state before page unload
-        window.addEventListener('beforeunload', persistState);
-
-        // Auto-save state periodically
-        setInterval(persistState, 10000); // Every 10 seconds
-
+        // Fallback initialization
+        window.addEventListener('load', () => {
+            if (!stateManager) {
+                console.warn('Fallback initialization triggered');
+                initApp();
+            }
+        });
     </script>
 </body>
 </html>
+
