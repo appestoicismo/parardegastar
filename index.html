@@ -169,12 +169,14 @@
             text-transform: uppercase !important;
             letter-spacing: 2px !important;
             transform: scale(1.05) !important;
+            width: 100% !important;
+            max-width: 100% !important;
         }
 
         .cta-button.purchase-special:hover {
             background: linear-gradient(45deg, #e55a5a, #dc4924, #e55a5a) !important;
             color: #fff !important;
-            transform: translateY(-4px) scale(1.1) !important;
+            transform: translateY(-4px) scale(1.05) !important;
             box-shadow: 0 15px 40px rgba(255, 107, 107, 0.7), 
                         0 0 0 5px rgba(255, 255, 255, 0.3),
                         inset 0 0 30px rgba(255, 255, 255, 0.3) !important;
@@ -249,21 +251,6 @@
                 transform: scale(1.2) rotate(180deg);
             }
         }
-
-        /* Responsividade para botões especiais */
-        @media (max-width: 768px) {
-            .cta-button.audio-special {
-                font-size: 1.1em !important;
-                padding: 20px 35px !important;
-                letter-spacing: 1px !important;
-            }
-            
-            .cta-button.purchase-special {
-                font-size: 1.2em !important;
-                padding: 20px 40px !important;
-                letter-spacing: 1px !important;
-            }
-        }
         
         .quiz-container {
             display: none;
@@ -333,22 +320,22 @@
             padding: 40px 20px;
         }
         
-        .audio-container {
+        /* Container do áudio separado e otimizado para mobile */
+        .audio-section {
             display: none;
             background: #2c3e50;
             color: white;
-            padding: 40px;
+            padding: 25px 20px;
             border-radius: 15px;
-            margin: 30px 0;
+            margin: 20px 0;
             text-align: center;
         }
         
-        /* Estilos para o player de áudio customizado */
+        /* Player de áudio customizado e otimizado */
         .custom-audio-player {
             background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
-            margin: 20px 0;
             backdrop-filter: blur(10px);
         }
 
@@ -365,9 +352,9 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
             border: none;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5em;
+            width: 50px;
+            height: 50px;
+            font-size: 1.3em;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
@@ -389,9 +376,9 @@
         .progress-bar-audio {
             position: relative;
             flex: 1;
-            height: 8px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            border-radius: 3px;
             overflow: hidden;
         }
 
@@ -413,27 +400,27 @@
         }
 
         .time-display {
-            font-size: 0.9em;
+            font-size: 0.85em;
             font-weight: bold;
             color: #ecf0f1;
-            min-width: 45px;
+            min-width: 40px;
         }
 
         .speed-control {
             display: flex;
             align-items: center;
             background: rgba(255, 255, 255, 0.1);
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
         }
 
         .speed-select {
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 6px;
-            padding: 4px 8px;
-            font-size: 0.9em;
+            border-radius: 4px;
+            padding: 3px 6px;
+            font-size: 0.8em;
             cursor: pointer;
         }
 
@@ -446,13 +433,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 12px;
         }
 
         .volume-slider {
-            width: 120px;
-            height: 6px;
+            width: 100px;
+            height: 5px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 3px;
             outline: none;
@@ -461,58 +448,98 @@
 
         .volume-slider::-webkit-slider-thumb {
             appearance: none;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             background: linear-gradient(45deg, #667eea, #764ba2);
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
         }
 
         .volume-slider::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             background: linear-gradient(45deg, #667eea, #764ba2);
             border-radius: 50%;
             cursor: pointer;
             border: none;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
         }
         
-        .offer-box {
+        /* Container da oferta separado e otimizado para mobile */
+        .offer-section {
+            display: none;
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
-            padding: 40px;
+            padding: 30px 20px;
             border-radius: 15px;
             margin: 30px 0;
             text-align: center;
             box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .price {
-            font-size: 3em;
+            font-size: 2.5em;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .guarantee {
             background: #27ae60;
             color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
             font-weight: bold;
+            font-size: 0.95em;
         }
         
         .hidden {
             display: none;
         }
 
-        /* Responsividade para o player de áudio */
+        /* Responsividade melhorada */
         @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .headline {
+                padding: 20px 15px;
+            }
+            
+            .main-headline {
+                font-size: 1.8em;
+            }
+            
+            .sub-headline {
+                font-size: 1.1em;
+            }
+            
+            .audio-section {
+                padding: 20px 15px;
+                margin: 15px 0;
+            }
+            
+            .custom-audio-player {
+                padding: 15px;
+            }
+            
             .audio-controls {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .progress-container {
@@ -520,8 +547,58 @@
                 width: 100%;
             }
             
+            .audio-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2em;
+            }
+            
+            .time-display {
+                font-size: 0.8em;
+                min-width: 35px;
+            }
+            
             .speed-control {
-                margin-top: 10px;
+                margin-top: 8px;
+            }
+            
+            .offer-section {
+                padding: 25px 15px;
+                margin: 20px 0;
+            }
+            
+            .price {
+                font-size: 2.2em;
+            }
+            
+            .cta-button.audio-special {
+                font-size: 1.1em !important;
+                padding: 20px 35px !important;
+                letter-spacing: 1px !important;
+            }
+            
+            .cta-button.purchase-special {
+                font-size: 1.2em !important;
+                padding: 20px 30px !important;
+                letter-spacing: 1px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-headline {
+                font-size: 1.6em;
+            }
+            
+            .price {
+                font-size: 2em;
+            }
+            
+            .audio-section {
+                padding: 15px 10px;
+            }
+            
+            .offer-section {
+                padding: 20px 10px;
             }
         }
     </style>
@@ -635,7 +712,7 @@
             </div>
             
             <p style="font-size: 1.2em; margin: 30px 0; color: #34495e;">
-                O que parece simples ‘falta de controle’ na hora da compra, tem na verdade uma explicação psicológica muito curiosa. Vamos ouvir o que a psiquiatra Ana Beatriz diz à respeito:
+                O que parece simples 'falta de controle' na hora da compra, tem na verdade uma explicação psicológica muito curiosa. Vamos ouvir o que a psiquiatra Ana Beatriz diz à respeito:
             </p>
             
             <button class="cta-button audio-special" onclick="showAudio()" style="margin: 30px 0;">
@@ -643,22 +720,17 @@
             </button>
         </div>
 
-        <!-- Página do Áudio e Oferta -->
-        <div id="audio-page" class="audio-container">
-            <h2 style="margin-bottom: 30px; font-size: 1.8em;">
-                🎧 Descubra Como as Pessoas Estão se Livrando da Compulsão de Comprar!
-            </h2>
+        <!-- Seção do Áudio (Separada) -->
+        <div id="audio-section" class="audio-section">
+            <h3 style="font-size: 1.4em; margin-bottom: 10px;">🎵 OUÇA O ÁUDIO</h3>
+            <p style="font-size: 1em; opacity: 0.9; margin-bottom: 20px;">O que a psiquiatra Ana Beatriz fala sobre comprar por impulso?</p>
             
-            <!-- Player de Áudio Funcional -->
+            <audio id="hypnosisAudio" preload="metadata">
+                <source src="https://appestoicismo.github.io/parardegastar/paredegastar1.MP3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+            
             <div class="custom-audio-player">
-                <p style="font-size: 1.2em; margin-bottom: 15px;">🎵 OUÇA O ÁUDIO</p>
-                <p style="font-size: 1em; opacity: 0.8; margin-bottom: 20px;">Agora você vai se surpreender de como as pessoas estão se livrando de compras impulsivas</p>
-                
-                <audio id="hypnosisAudio" preload="metadata">
-                    <source src="https://appestoicismo.github.io/parardegastar/paredegastar1.MP3" type="audio/mpeg">
-                    Seu navegador não suporta o elemento de áudio.
-                </audio>
-                
                 <!-- Controles do Player -->
                 <div class="audio-controls">
                     <button id="playPauseBtn" class="audio-btn">
@@ -680,7 +752,7 @@
                     </div>
                     
                     <div class="speed-control">
-                        <label for="speedSelect" style="font-size: 0.9em; margin-right: 8px;">⚡ Velocidade:</label>
+                        <label for="speedSelect" style="font-size: 0.85em; margin-right: 6px;">⚡</label>
                         <select id="speedSelect" class="speed-select">
                             <option value="0.5">0.5x</option>
                             <option value="0.75">0.75x</option>
@@ -693,57 +765,99 @@
                 </div>
                 
                 <div class="volume-control">
-                    <span style="font-size: 0.9em; margin-right: 8px;">🔊 Volume:</span>
+                    <span style="font-size: 0.85em; margin-right: 6px;">🔊</span>
                     <input type="range" id="volumeSlider" min="0" max="100" value="100" class="volume-slider">
                 </div>
             </div>
+        </div>
+
+        <!-- Seção da Oferta (Separada e Oculta) -->
+        <div id="offer-section" class="offer-section">
+            <h3 style="font-size: 1.6em; margin-bottom: 15px;">
+                🎯 OFERTA IMPERDÍVEL - APENAS HOJE!
+            </h3>
             
-            <!-- Oferta Lendária -->
-            <div class="offer-box">
-                <h3 style="font-size: 1.8em; margin-bottom: 20px;">
-                    🎯 OFERTA IMPERDÍVEL - APENAS HOJE!
-                </h3>
-                
-                <p style="font-size: 1.2em; margin-bottom: 20px;">
-                    Método Completo de Hipnoterapia para Controle de Impulsos Financeiros
-                </p>
-                
-                <div style="text-decoration: line-through; font-size: 1.2em; opacity: 0.7;">
-                    De R$ 197,00
-                </div>
-                
-                <div class="price">
-                    R$ 19,90
-                </div>
-                
-                <p style="font-size: 1.1em; margin: 20px 0;">
-                    ✅ 5 Sessões de Hipnoterapia em Áudio<br>
-                    ✅ Guia Prático de Controle Financeiro<br>
-                    ✅ Técnicas de Autocontrole Subconsciente<br>
-                    ✅ Suporte via WhatsApp por 30 dias
-                </p>
-                
-                <div class="guarantee">
-                    🛡️ GARANTIA INCONDICIONAL DE 7 DIAS
-                    <br>Se não funcionar, devolvemos 100% do seu dinheiro!
-                </div>
-                
-                <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" target="_blank">
-                    <button class="cta-button purchase-special">
-                        GARANTIR MINHA VAGA AGORA! 🚀
-                    </button>
-                </a>
-                
-                <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">
-                    ⚠️ Restam apenas 47 vagas com esse preço especial!
-                </p>
+            <p style="font-size: 1.1em; margin-bottom: 15px;">
+                Reprograme sua mente para nunca mais comprar por impulso!
+            </p>
+            
+            <div style="text-decoration: line-through; font-size: 1.1em; opacity: 0.7;">
+                De R$ 97,00
             </div>
+            
+            <div class="price">
+                R$ 19,90
+            </div>
+            
+            <div style="text-align: left; margin: 20px 0;">
+    <!-- Título da seção -->
+    <div style="background: rgba(255,255,255,0.15); padding: 12px; border-radius: 8px; margin-bottom: 15px; text-align: center;">
+        <strong style="font-size: 1.1em;">📦 O QUE VOCÊ RECEBE HOJE:</strong>
+    </div>
+    
+    <!-- Item 1 -->
+    <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid rgba(255,255,255,0.3);">
+        <div style="display: flex; align-items: flex-start; gap: 10px;">
+            <span style="color: #4CAF50; font-size: 1.2em; flex-shrink: 0;">✅</span>
+            <div>
+                <strong>Áudio de hipnoterapia</strong><br>
+                <span style="font-size: 0.95em; opacity: 0.9;">Para reprogramar os padrões de comportamento automático e neutralizar o impulso de comprar</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Item 2 -->
+    <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid rgba(255,255,255,0.3);">
+        <div style="display: flex; align-items: flex-start; gap: 10px;">
+            <span style="color: #4CAF50; font-size: 1.2em; flex-shrink: 0;">✅</span>
+            <div>
+                <strong>Acesso ao aplicativo de Auto Hipnose</strong><br>
+                <span style="font-size: 0.95em; opacity: 0.9;">Com áudios hipnóticos e ferramentas de autoconhecimento grátis e com descontos</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Item 3 - Bônus -->
+    <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #FFD700;">
+        <div style="display: flex; align-items: flex-start; gap: 10px;">
+            <span style="color: #FFD700; font-size: 1.2em; flex-shrink: 0;">🎁</span>
+            <div>
+                <strong style="color: #FFD700;">BÔNUS - Ferramenta Perfil Comportamental</strong><br>
+                <span style="font-size: 0.95em; opacity: 0.9;">Descubra o seu perfil comportamental</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Item 4 -->
+    <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; border-left: 4px solid rgba(255,255,255,0.3);">
+        <div style="display: flex; align-items: flex-start; gap: 10px;">
+            <span style="color: #4CAF50; font-size: 1.2em; flex-shrink: 0;">✅</span>
+            <div>
+                <strong>Acesso à comunidade do AppAutoHipnose</strong><br>
+                <span style="font-size: 0.95em; opacity: 0.9;">Lições, ensinamentos e orientações sobre hipnose e autoconhecimento direto no seu celular</span>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            <div class="guarantee">
+                🛡️ GARANTIA INCONDICIONAL DE 7 DIAS
+                <br>Se não funcionar, devolvemos 100% do seu dinheiro!
+            </div>
+            
+            <a href="https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10" target="_blank">
+                <button class="cta-button purchase-special">
+                    ACESSAR MEU ÁUDIO AGORA! 🚀
+                </button>
+            </a>
         </div>
     </div>
 
     <script>
         let answers = {};
         let currentQuestion = 1;
+        let offerShown = false;
+        let audioListeningTime = 0;
 
         function startQuiz() {
             document.getElementById('homepage').style.display = 'none';
@@ -820,10 +934,35 @@
 
         function showAudio() {
             document.getElementById('result-page').style.display = 'none';
-            document.getElementById('audio-page').style.display = 'block';
+            document.getElementById('audio-section').style.display = 'block';
             
             // Track Facebook event
             fbq('track', 'AddToCart');
+        }
+
+        // Função para mostrar a oferta após 5 segundos de áudio
+        function showOfferAfterListening() {
+            if (!offerShown) {
+                const offerSection = document.getElementById('offer-section');
+                offerSection.style.display = 'block';
+                offerShown = true;
+                
+                // Scroll suave para a oferta
+                setTimeout(() => {
+                    offerSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 100);
+                
+                // Track Facebook event
+                fbq('track', 'ViewContent', {
+                    content_name: 'Offer Revealed',
+                    content_category: 'Sales Offer',
+                    value: 19.90,
+                    currency: 'BRL'
+                });
+            }
         }
 
         // JavaScript para controlar o player de áudio
@@ -871,12 +1010,17 @@
                 progressSlider.max = audio.duration;
             });
 
-            // Atualizar progresso
+            // Atualizar progresso e verificar tempo de escuta
             audio.addEventListener('timeupdate', function() {
                 const progress = (audio.currentTime / audio.duration) * 100;
                 progressFill.style.width = progress + '%';
                 progressSlider.value = audio.currentTime;
                 currentTimeSpan.textContent = formatTime(audio.currentTime);
+                
+                // Verificar se o usuário ouviu pelo menos 5 segundos
+                if (audio.currentTime >= 5 && !offerShown) {
+                    showOfferAfterListening();
+                }
             });
 
             // Controle de progresso via slider
