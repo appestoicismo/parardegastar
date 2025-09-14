@@ -1112,7 +1112,7 @@
                     </li>
                     <li style="counter-increment: step; margin-bottom: 10px; padding-left: 30px; position: relative;">
                         <span style="position: absolute; left: 0; top: 0; background: rgba(255, 255, 255, 0.2); width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: bold;">3</span>
-                        <strong>Momento ideal:</strong> Antes de compras online ou saídas ao shopping
+                        <strong>Momento ideal:</strong> Início ou final do dia
                     </li>
                 </ol>
             </div>
@@ -1160,6 +1160,7 @@
             PIXEL_ID: '1127160492081134',
             AUDIO_URL: 'https://appestoicismo.github.io/parardegastar/paredegastar1.MP3',
             CHECKOUT_URL: 'https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10',
+            AUDIO_DURATION: 1800, // 30 minutos em segundos - AJUSTE CONFORME NECESSÁRIO
             TRACKING: {
                 STATE_SAVE_INTERVAL: 10000, // 10 seconds
                 STATE_MAX_AGE: 86400000 // 24 hours
@@ -1634,9 +1635,17 @@
                     this.endListeningSession();
                 });
 
+                // CORREÇÃO: Tratamento robusto para duração do áudio
                 this.audio.addEventListener('loadedmetadata', () => {
-                    durationSpan.textContent = this.formatTime(this.audio.duration);
-                    progressSlider.max = this.audio.duration;
+                    this.setDuration();
+                });
+
+                this.audio.addEventListener('canplay', () => {
+                    this.setDuration();
+                });
+
+                this.audio.addEventListener('loadstart', () => {
+                    console.log('Áudio começou a carregar...');
                 });
 
                 this.audio.addEventListener('timeupdate', () => {
@@ -1683,7 +1692,28 @@
                     this.pixelTracker.trackCustomEvent('Audio_Load_Error', {
                         error_type: 'audio_load_failed'
                     });
+                    
+                    // Fallback para duração manual
+                    this.setDuration(true);
                 });
+            }
+
+            // NOVO MÉTODO: Configurar duração de forma robusta
+            setDuration(useManual = false) {
+                const durationSpan = document.getElementById('duration');
+                const progressSlider = document.getElementById('progressSlider');
+                
+                if (!useManual && this.audio.duration && !isNaN(this.audio.duration) && this.audio.duration > 0) {
+                    // Duração detectada automaticamente
+                    durationSpan.textContent = this.formatTime(this.audio.duration);
+                    progressSlider.max = this.audio.duration;
+                    console.log('Duração detectada:', this.audio.duration);
+                } else {
+                    // Usar duração manual da configuração
+                    durationSpan.textContent = this.formatTime(CONFIG.AUDIO_DURATION);
+                    progressSlider.max = CONFIG.AUDIO_DURATION;
+                    console.log('Usando duração manual:', CONFIG.AUDIO_DURATION);
+                }
             }
 
             startListeningSession() {
@@ -2000,6 +2030,8 @@
             console.log('Quiz Answers:', stateManager?.state?.answers);
             console.log('UTMs:', utmTracker?.utmParams);
             console.log('Session ID:', stateManager?.state?.sessionId);
+            console.log('Audio Duration (config):', CONFIG.AUDIO_DURATION);
+            console.log('Audio Duration (detected):', audioPlayer?.audio?.duration);
         };
 
         // ===== STARTUP =====
