@@ -1161,7 +1161,6 @@
             AUDIO_URL: 'https://appestoicismo.github.io/parardegastar/paredegastar1.MP3',
             CHECKOUT_URL: 'https://pay.hotmart.com/F101859096T?off=p1agmrhh&checkoutMode=10',
             TRACKING: {
-                LISTEN_THRESHOLD: 30000, // 30 seconds
                 STATE_SAVE_INTERVAL: 10000, // 10 seconds
                 STATE_MAX_AGE: 86400000 // 24 hours
             }
@@ -1510,6 +1509,9 @@
             showAudio() {
                 document.getElementById('result-page').classList.add('is-hidden');
                 document.getElementById('audio-section').classList.remove('is-hidden');
+                
+                // NOVO: Mostrar oferta imediatamente junto com o áudio
+                document.getElementById('offer-section').classList.remove('is-hidden');
 
                 this.pixelTracker.track('ViewContent', {
                     content_name: 'Audio Section Viewed',
@@ -1519,6 +1521,26 @@
                 });
 
                 this.setupAudioControls();
+                
+                // NOVO: Configurar conteúdo da oferta imediatamente
+                if (!this.stateManager.state.offerShown) {
+                    this.stateManager.updateState({ offerShown: true });
+                    this.renderDynamicBenefits();
+                    this.renderTestimonials();
+                    this.renderFAQ();
+                    this.setupStickyCTA();
+
+                    // Track AddToCart event
+                    this.pixelTracker.track('AddToCart', {
+                        content_name: 'Hypnosis Audio Offer',
+                        content_category: 'Digital Product',
+                        value: 19.90,
+                        currency: 'BRL',
+                        audio_listen_time: this.stateManager.state.totalListenTime,
+                        engagement_level: 'qualified'
+                    });
+                }
+                
                 this.scrollToElement('audio-section');
             }
 
@@ -1623,12 +1645,6 @@
                         progressFill.style.width = progress + '%';
                         progressSlider.value = this.audio.currentTime;
                         currentTimeSpan.textContent = this.formatTime(this.audio.currentTime);
-
-                        // Check if user has listened enough to show offer
-                        if (this.audio.currentTime > CONFIG.TRACKING.LISTEN_THRESHOLD / 1000 && 
-                            !this.stateManager.state.offerShown) {
-                            this.showOffer();
-                        }
                     }
                 });
 
@@ -1639,7 +1655,6 @@
                     progressSlider.value = 0;
                     currentTimeSpan.textContent = '00:00';
                     this.endListeningSession();
-                    this.showOffer();
                 });
 
                 // Progress slider
@@ -1702,33 +1717,6 @@
                 }
             }
 
-            showOffer() {
-                if (this.stateManager.state.offerShown) return;
-
-                const offerSection = document.getElementById('offer-section');
-                offerSection.classList.remove('is-hidden');
-                
-                this.stateManager.updateState({ offerShown: true });
-
-                // Render dynamic content
-                this.renderDynamicBenefits();
-                this.renderTestimonials();
-                this.renderFAQ();
-                this.setupStickyCTA();
-
-                // Track AddToCart event
-                this.pixelTracker.track('AddToCart', {
-                    content_name: 'Hypnosis Audio Offer',
-                    content_category: 'Digital Product',
-                    value: 19.90,
-                    currency: 'BRL',
-                    audio_listen_time: this.stateManager.state.totalListenTime,
-                    engagement_level: 'qualified'
-                });
-
-                this.scrollToElement('offer-section');
-            }
-
             renderDynamicBenefits() {
                 const answers = this.stateManager.state.answers;
                 const q3 = answers[3];
@@ -1765,7 +1753,7 @@
                     },
                     {
                         text: "Economizei mais de R$ 500 no primeiro mês. Valeu cada centavo investido!",
-                        author: "Ana Beatriz Costa",
+                        author: "Ana Paula Costa",
                         location: "Belo Horizonte, MG"
                     }
                 ];
@@ -2031,5 +2019,3 @@
     </script>
 </body>
 </html>
-
-
